@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  UVaID: 1
+  Name: MyString
+  Description: MyText
+  Code: MyText
+  UserId: 1
+
+two:
+  UVaID: 1
+  Name: MyString
+  Description: MyText
+  Code: MyText
+  UserId: 1
