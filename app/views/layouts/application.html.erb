@@ -1,14 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>AcmApp</title>
+  <title>ACM</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
+<!--navigation -->
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#">Home</a></li>
+  <li><a href="#">Link 1</a></li>
+  <li><a href="#">Link 2</a></li>
+</ul>
 
+
+<!-- end navigation -->
+
+<div class = 'container'>
+	<div class = 'row'>
+		<div class = 'span3'><h2>Sidebar</h2>
+		This will function as the sidebar <br />
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec convallis orci nibh, sed auctor mauris 			suscipit tristique. Phasellus id neque in dolor sodales tincidunt. Curabitur nec venenatis enim, 			posuere euismod eros. Nulla facilisi. Duis consequat et eros at tristique. In iaculis, eros sed pretium 		tristique, ante ante mollis elit, eget pharetra lorem diam ac urna. In non sapien id elit eleifend 			suscipit iaculis ac justo. Morbi malesuada massa quis elit interdum facilisis. Nunc sapien felis, 			dignissim id nunc vitae, porttitor faucibus est. Nullam eu luctus leo.	
+		</div>
+		<div class = 'span9'><%= yield %></div>
+	</div>
+</div>
 </body>
 </html>
