@@ -11,48 +11,57 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131228224645) do
+ActiveRecord::Schema.define(version: 20131229204204) do
 
   create_table "icpc_entries", force: true do |t|
-    t.integer  "UVaID"
-    t.string   "Name"
-    t.text     "Description"
-    t.text     "Code"
-    t.integer  "UserId"
+    t.integer  "uva_id"
+    t.string   "name"
+    t.text     "description"
+    t.text     "code"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "projects", force: true do |t|
-    t.string   "Name"
-    t.string   "Description"
-    t.integer  "State"
-    t.integer  "UserId"
-    t.integer  "TechnologyId"
+    t.string   "name"
+    t.string   "description"
+    t.integer  "state"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "projects_technologies_joins", id: false, force: true do |t|
+    t.integer "poject_id"
+    t.integer "technology_id"
+  end
+
+  create_table "projects_users_joins", id: false, force: true do |t|
+    t.integer "category_id"
+    t.integer "interested_user_id"
   end
 
   create_table "technologies", force: true do |t|
-    t.string   "Name"
-    t.integer  "ProjectID"
-    t.integer  "UserId"
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  create_table "technologies_users_joins", id: false, force: true do |t|
+    t.integer "technology_id"
+    t.integer "user_id"
+  end
+
   create_table "users", force: true do |t|
-    t.string   "ShibUID"
-    t.string   "ShibAffiliation"
-    t.string   "ShibPrincipal"
-    t.string   "FirstName"
-    t.string   "LastName"
-    t.string   "EMail"
-    t.string   "OpenID"
-    t.string   "PersonalBio"
-    t.integer  "ProjectID"
-    t.integer  "ICPCEntryId"
-    t.integer  "TechnologyId"
+    t.string   "shib_uid"
+    t.string   "shib_affiliation"
+    t.string   "shib_principal"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "open_id"
+    t.string   "personal_bio"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

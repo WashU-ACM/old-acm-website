@@ -1,11 +1,10 @@
 class CreateProjects < ActiveRecord::Migration
   def change
     create_table :projects do |t|
-      t.string :Name
-      t.string :Description
-      t.integer :State
-      t.integer :UserId
-      t.integer :TechnologyId
+      t.string :name
+      t.string :description
+      t.integer :state
+      t.integer :user_id
 
       t.timestamps
     end
