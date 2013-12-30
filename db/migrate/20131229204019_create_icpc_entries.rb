@@ -5,6 +5,8 @@ class CreateIcpcEntries < ActiveRecord::Migration
       t.string :name
       t.text :description
       t.text :code
+
+      # one-to-many association:
       t.integer :user_id
 
       t.timestamps

@@ -27,19 +27,19 @@ ActiveRecord::Schema.define(version: 20131229204204) do
     t.string   "name"
     t.string   "description"
     t.integer  "state"
-    t.integer  "user_id"
+    t.integer  "owner_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "projects_technologies_joins", id: false, force: true do |t|
-    t.integer "poject_id"
+  create_table "projects_technologies", id: false, force: true do |t|
+    t.integer "project_id"
     t.integer "technology_id"
   end
 
-  create_table "projects_users_joins", id: false, force: true do |t|
-    t.integer "category_id"
-    t.integer "interested_user_id"
+  create_table "projects_users", id: false, force: true do |t|
+    t.integer "project_id"
+    t.integer "user_id"
   end
 
   create_table "technologies", force: true do |t|
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20131229204204) do
     t.datetime "updated_at"
   end
 
-  create_table "technologies_users_joins", id: false, force: true do |t|
+  create_table "technologies_users", id: false, force: true do |t|
     t.integer "technology_id"
     t.integer "user_id"
   end
@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 20131229204204) do
     t.string   "last_name"
     t.string   "email"
     t.string   "open_id"
-    t.string   "personal_bio"
+    t.text     "personal_bio"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
