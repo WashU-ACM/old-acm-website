@@ -5,5 +5,8 @@ class PagesController < ApplicationController
 	def home
 		
 	end
+	def invalid_request
+	  
+	end
 	
 end

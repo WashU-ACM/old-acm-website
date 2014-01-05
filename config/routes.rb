@@ -1,6 +1,14 @@
 AcmApp::Application.routes.draw do
-	root 'pages#home'
-	post "/auth/google/callback", to: 'sessions#create'
+
+resources :users
+
+root 'pages#home'
+get "/invalid_request", to: 'pages#invalid_request'
+post "/auth/google/callback", to: 'sessions#create'
+post "/auth/failure", to: redirect('/')
+get 'signout', to: 'sessions#destroy', as: 'signout'
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -6,6 +6,8 @@ gem 'twitter-bootstrap-rails'
 
 gem 'omniauth-openid'
 
+gem 'friendly_id'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 

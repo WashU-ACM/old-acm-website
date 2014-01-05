@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+<h2>User Profile</h2>
+<table>
+  <tr class = 'user'><td>First Name:</td><td><%= @user.first_name %></td></tr>
+  <tr class = 'user'><td>Last Name:</td><td><%= @user.last_name %></td></tr>
+  <tr class = 'user'><td>Email:</td><td><%= @user.email %></td></tr>
+  <tr class = 'user'><td>User Bio:</td><td><text_field><%= @user.personal_bio %></text_field></td></tr>
+</table>
+
+<% if @user.id == current_user.id %>
+  <%= link_to 'Edit Profile', edit_user_path(@user) %>
+<% end %>
