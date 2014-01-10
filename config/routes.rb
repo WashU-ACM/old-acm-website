@@ -1,12 +1,12 @@
 AcmApp::Application.routes.draw do
 
-resources :users
+  resources :users
 
-root 'pages#home'
-get "/invalid_request", to: 'pages#invalid_request'
-post "/auth/google/callback", to: 'sessions#create'
-post "/auth/failure", to: redirect('/')
-get 'signout', to: 'sessions#destroy', as: 'signout'
+  root 'pages#home'
+  get "/invalid_request", to: 'pages#invalid_request'
+  match "/auth/:provider/callback", to: "sessions#create", via: [:get, :post]
+  post "/auth/failure", to: redirect('/')
+  get 'signout', to: 'sessions#destroy', as: 'signout'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

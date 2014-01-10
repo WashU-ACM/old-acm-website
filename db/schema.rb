@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140104204733) do
+ActiveRecord::Schema.define(version: 20140110150044) do
 
   create_table "icpc_entries", force: true do |t|
     t.integer  "uva_id"
@@ -56,7 +56,6 @@ ActiveRecord::Schema.define(version: 20140104204733) do
   create_table "users", force: true do |t|
     t.string   "shib_uid"
     t.string   "shib_affiliation"
-    t.string   "shib_principal"
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"
@@ -65,6 +64,9 @@ ActiveRecord::Schema.define(version: 20140104204733) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "provider"
+    t.string   "shib_eppn"
+    t.string   "shib_samaccountname"
+    t.string   "shib_credid"
   end
 
 end
