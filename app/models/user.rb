@@ -36,7 +36,7 @@ class User < ActiveRecord::Base
 
   def self.uid_field_from_provider provider
     case provider
-      when "open_id"
+      when "google"
       return :open_id
       when "shibboleth"
       return :shib_uid
