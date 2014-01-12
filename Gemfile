@@ -5,6 +5,7 @@ gem 'less-rails'
 gem 'twitter-bootstrap-rails'
 
 gem 'omniauth-openid'
+gem 'omniauth-shibboleth'
 
 gem 'friendly_id'
 
