@@ -2,10 +2,15 @@ class User < ActiveRecord::Base
 
   
 	#relationships
+	#has_and_belongs_to_many :technologies
 	has_many :icpc_entries
 	has_many :projects, foreign_key: "owner_id"
 	has_and_belongs_to_many :interested_projects, class_name: "Project"
-	has_and_belongs_to_many :technologies
+	has_many :competencies
+	has_many :technologies, through: :competencies
+	
+	
+	 accepts_nested_attributes_for :competencies
 
 	def self.from_omniauth(auth)
 		where(auth.slice("provider","open_id")).first || create_from_omniauth(auth)

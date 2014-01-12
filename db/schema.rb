@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140104204733) do
+ActiveRecord::Schema.define(version: 20140110025733) do
+
+  create_table "competencies", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "technology_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "icpc_entries", force: true do |t|
     t.integer  "uva_id"

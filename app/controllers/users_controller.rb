@@ -20,7 +20,9 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
       @user = current_user
-      #Hack to make sure nobody attempts to change another user's profile
+      #Have technologies available for users to select
+      @technologies = Technology.all
+      #make sure nobody attempts to change another user's profile
       if request.fullpath != "/users/" + current_user.id.to_s() + "/edit"
 	redirect_to "/invalid_request"
       end
@@ -41,6 +43,7 @@ class UsersController < ApplicationController
       end
     end
   end
+  
 
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
@@ -65,6 +68,7 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -74,6 +78,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :personal_bio, :email)
+      params.require(:user).permit!
     end
 end
