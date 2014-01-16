@@ -2,6 +2,9 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :require_login, except: [:new, :create]
 
+  
+  
+  
   # GET /users
   # GET /users.json
   def index
@@ -19,17 +22,19 @@ class UsersController < ApplicationController
   end
 
   # GET /users/1/edit
-  def edit
-      @user = current_user
-
-      #make sure nobody attempts to change another user's profile
-      if request.fullpath != "/users/" + current_user.id.to_s() + "/edit"
+  def edit 
+    
+    #make sure nobody attempts to change another user's profil
+    if @user.id != current_user.id
 	redirect_to "/invalid_request"
-      end
+    else
+      @user = current_user
+    end
+      
   end
 
   # POST /users
-  # POST /users.json
+  # POST /users.json	
   def create
     @user = User.new(user_params)
 

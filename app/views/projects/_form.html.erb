@@ -1,0 +1,40 @@
+
+  <%= form_for(@project) do |f| %>
+    <% if @project.errors.any? %>
+      <div id="error_explanation">
+	<h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+
+	<ul>
+	<% @project.errors.full_messages.each do |msg| %>
+	  <li><%= msg %></li>
+	<% end %>
+	</ul>
+      </div>
+    <% end %>
+    
+    <div class="field">
+      <%= f.label :name %><br>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label :description %><br>
+      <%= f.text_area :description %>
+    </div>
+    <div class="field">
+      <%= f.label "state" %><br>
+      <%= f.select :state, [ 'active','inactive' ], :prompt => 'Select One' %>
+    </div>
+    <div class="field">
+    <%= f.label "Desired Technologies" %>
+      <%= hidden_field_tag "project[technology_ids][]", nil %>
+      <% Technology.all.each do |technology| %>
+	<%= check_box_tag "project[technology_ids][]", technology.id, @project.technology_ids.include?(technology.id) %>
+	<%= technology.name %><br/>
+	<% end %>
+    </div>
+    <%= f.hidden_field :owner_id, :value => current_user.id %>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+    <%= link_to 'Delete Project', @project, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>

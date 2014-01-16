@@ -1,11 +1,17 @@
 AcmApp::Application.routes.draw do
 
   resources :users
+  
+  resources :projects do
+    member do
+      get 'interest' # /projects/:id/interest
+    end
+  end
 
   root 'pages#home'
   get "/invalid_request", to: 'pages#invalid_request'
   match "/auth/:provider/callback", to: "sessions#create", via: [:get, :post]
-  post "/auth/failure", to: redirect('/')
+  post "/auth/failure", to: 'pages#invalid_request'
   get 'signout', to: 'sessions#destroy', as: 'signout'
 
 

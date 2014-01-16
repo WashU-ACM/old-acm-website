@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+
+<table>
+  <tr><td>Name: </td><td><%= @project.name %></td></tr>
+  <tr><td>Description: </td><td><%= @project.description %></td></tr>
+  <tr><td>State: </td><td><%= @project.state %></td></tr>
+</table>
+<% if current_user && @project.owner_id == current_user.id %>
+  <%= link_to 'Edit', edit_project_path(@project) %> |
+  <%= link_to 'Express interest', interest_project_path(@project) %> |
+<% end %>
+<%= link_to 'Back', projects_path %>

@@ -8,8 +8,7 @@ class User < ActiveRecord::Base
 	has_and_belongs_to_many :interested_projects, class_name: "Project"
 	has_many :competencies
 	has_many :technologies, through: :competencies
-	
-	
+
 	 accepts_nested_attributes_for :competencies
 
   def self.from_omniauth(auth)

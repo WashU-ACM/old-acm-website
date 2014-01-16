@@ -11,8 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20140110025733) do
+ActiveRecord::Schema.define(version: 20140112214410) do
 
   create_table "competencies", force: true do |t|
     t.integer  "user_id"
@@ -20,9 +19,6 @@ ActiveRecord::Schema.define(version: 20140110025733) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-=======
-ActiveRecord::Schema.define(version: 20140110150044) do
->>>>>>> ce752f394995f645831c647aa88138325b06e905
 
   create_table "icpc_entries", force: true do |t|
     t.integer  "uva_id"
@@ -37,7 +33,7 @@ ActiveRecord::Schema.define(version: 20140110150044) do
   create_table "projects", force: true do |t|
     t.string   "name"
     t.string   "description"
-    t.integer  "state"
+    t.string   "state"
     t.integer  "owner_id"
     t.datetime "created_at"
     t.datetime "updated_at"
