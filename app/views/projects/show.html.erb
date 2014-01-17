@@ -7,6 +7,12 @@
 </table>
 <% if current_user && @project.owner_id == current_user.id %>
   <%= link_to 'Edit', edit_project_path(@project) %> |
-  <%= link_to 'Express interest', interest_project_path(@project) %> |
+<% end %>
+<% if current_user %>
+  <% if !@project.enthusiast_ids.include?(current_user.id)%>
+    <%= link_to 'Express interest', interest_project_path(@project) %> |
+  <% else %>
+  <%= link_to 'Delete interest', interest_project_path(@project) %> |
+  <% end %>
 <% end %>
 <%= link_to 'Back', projects_path %>

@@ -13,8 +13,19 @@ class ProjectsController < ApplicationController
   end
   
   def interest
-    @project.user_id = current_user.id;
-    flash[:notice] = "Expessed interest"
+   if !current_user
+     redirect_to "/"
+   elsif !@project.enthusiast_ids.include?(current_user.id)
+      @project.enthusiast_ids = current_user.id;
+      flash[:notice] = "Expessed interest"
+      redirect_to @project
+
+    #if user is attempting to "destroy" interest
+   else @project.enthusiast_ids.include?(current_user.id)
+      @project.enthusiasts.delete(current_user)
+      flash[:notice] = "Deleted interest"
+      redirect_to @project
+    end
   end
   # GET /projects/1
   # GET /projects/1.json
