@@ -1,42 +1,45 @@
-<%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
-      <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<%= form_for current_user, :html => { :class => 'form-horizontal' } do |f| %>
+  
+  <div class="control-group">
+    <%= f.label :first_name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :first_name, :class => 'text_field' %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :first_name %><br>
-    <%= f.text_field :first_name %>
   </div>
-  <div class="field">
-    <%= f.label :last_name %><br>
-    <%= f.number_field :last_name %>
+  <div class="control-group">
+    <%= f.label :last_name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :last_name, :class => 'text_field' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
+  <div class="control-group">
+    <%= f.label :email, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :email, :class => 'text_field' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :personal_bio %><br>
-    <%= f.text_area :personal_bio %>
+ 
+  <div class="control-group">
+    <%= f.label :personal_bio, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :personal_bio, :class => 'text_area' %>
+    </div>
   </div>
-  <div class="field">
+ 
+  <div class="control-group">
+    <%= f.label :Technologies, :class => 'control-label' %>
     <%= hidden_field_tag "user[technology_ids][]", nil %>
     <% Technology.all.each do |technology| %>
+    <div class="controls">
       <%= check_box_tag "user[technology_ids][]", technology.id, @user.technology_ids.include?(technology.id) %>
       <%= technology.name %><br/>
-      <% end %>
+     </div>
+     <% end %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('Profile', :default => t("helpers.links.Profile")),
+                current_user, :class => 'btn' %>
   </div>
 <% end %>
-
- 

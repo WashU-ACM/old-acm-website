@@ -21,7 +21,7 @@
         <td><%= project.state %></td>
         <td><%= User.find(project.owner_id).first_name %> <%= User.find(project.owner_id).last_name %></td>
         <td>
-        <% if current_user.id == project.owner_id %>
+        <% if current_user && current_user.id == project.owner_id %>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_project_path(project), :class => 'btn btn-mini' %>
         <% end %>

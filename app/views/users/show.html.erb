@@ -1,21 +1,30 @@
-<p id="notice"><%= notice %></p>
-<h2>User Profile</h2>
-<table style = "float: left;">
-  <tr class = 'user'><td>First Name:</td><td><%= @user.first_name %></td></tr>
-  <tr class = 'user'><td>Last Name:</td><td><%= @user.last_name %></td></tr>
-  <tr class = 'user'><td>Email:</td><td><%= @user.email %></td></tr>
-  <tr class = 'user'><td>User Bio:</td><td><text_field><%= @user.personal_bio %></text_field></td></tr>
-</table>
-
-<div style = "float:left;">
-Technologies:
-  <ul>
-    <% @user.technologies.each do |t| %>
-      <li><%= t.name %></li>
-    <% end %>
-  </ul>
+<%- model_class = User -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
 </div>
 
-<% if @user.id == current_user.id %>
-  <p style = "clear:both;"><%= link_to 'Edit Profile', edit_user_path(@user) %></p>
-<% end %>
+<dl class="dl-horizontal">
+  
+  <dt><strong><%= model_class.human_attribute_name(:first_name) %>:</strong></dt>
+  <dd><%= @user.first_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:last_name) %>:</strong></dt>
+  <dd><%= @user.last_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
+  <dd><%= @user.email %></dd>
+ 
+  <dt><strong><%= model_class.human_attribute_name(:personal_bio) %>:</strong></dt>
+  <dd><%= @user.personal_bio %></dd>
+   <dt><strong> Technologies: </strong></dt>
+      <dd><% @user.technologies.each do |t| %>
+      <li><%= t.name %></li>
+    <% end %></dd>
+</dl>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.Home")),
+              :root, :class => 'btn'  %>
+  <% if @user.id == current_user.id %>
+  <%= link_to t('.edit profile', :default => t("helpers.links.edit")),
+              edit_user_path(@user), :class => 'btn' %>
+  <% end %>
+</div>
