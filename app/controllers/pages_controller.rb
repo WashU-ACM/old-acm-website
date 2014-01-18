@@ -8,5 +8,10 @@ class PagesController < ApplicationController
 	def invalid_request
 	  
 	end
-	
+	def calendar
+	  
+	end
+	def officers
+	  
+	end
 end

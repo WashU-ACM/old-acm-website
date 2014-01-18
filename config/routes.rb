@@ -13,6 +13,8 @@ AcmApp::Application.routes.draw do
   match "/auth/:provider/callback", to: "sessions#create", via: [:get, :post]
   post "/auth/failure", to: 'pages#invalid_request'
   get 'signout', to: 'sessions#destroy', as: 'signout'
+  get "/calendar", to: "pages#calendar"
+   get "/officers", to: "pages#officers"
 
 
   # The priority is based upon order of creation: first created -> highest priority.
