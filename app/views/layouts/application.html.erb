@@ -20,7 +20,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</a>
-			<%= link_to "acm", root_path, class: "brand" %>
+			<%= link_to "ACM", root_path, class: "brand" %>
 			<div class="nav-collapse collapse">
 				<ul class="nav">
 					<li><%= link_to "Projects", projects_path %></li>
@@ -53,13 +53,18 @@
 			</div>
 			<div class="span3" id="sidebar">
 
-				<%= link_to image_tag("washu-acm.svg", id: "logo"), root_path %>
+				<%= link_to image_tag("washu-acm.svg", id: "sidebar-logo"), root_path %>
 
 				<%= link_to "Tweets by @WashUACM", twitter_path, class: "twitter-timeline", id: "sidebar-twitter", :"data-widget-id" => "424405968739237888" %>
 				<script type="text/javascript">
 					document.getElementById("sidebar-twitter").setAttribute("height", 400); // necessary to pass the validator
 				</script>
 				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?"http":"https";if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+				<div id="sidebar-seals">
+					<%= image_tag "student-union.png" %>
+					<%= image_tag "brookings-seal.svg" %>
+				</div>
 
 			</div>
 		</div>
@@ -74,9 +79,13 @@
 				</p>
 			</div>
 			<div class="span3">
-				Web site designed by Brandon Meeks and Shane Carr
+				<p>Web site designed by Brandon Meeks and Shane Carr.</p>
+				<p>&copy; <span id="copyright-year"></span> WashU ACM</p>
+				<script type="text/javascript">
+					document.getElementById("copyright-year").appendChild(document.createTextNode(new Date().getFullYear()));
+				</script>
 			</div>
-			<div class="span3" style="text-align: right;">
+			<div class="span3">
 				<%= link_to image_tag("html5.svg"), validator_path %>
 				<img alt="Ssl_trust_logo" onclick="window.open('https://www.ssl.com/site_seals/48e5a768-52d9ccfe/site_report', 'site_report','height=500, width=400, top=100, left=100')" onmouseover="this.style.cursor='pointer'" src="https://www.ssl.com/images/ssl_trust_logo.gif" style="border: none;" />
 			</div>

@@ -4,16 +4,33 @@
 	padding: 4px 0 0;
 }
 
-#logo {
-	display: block;
-	width: 100%;
+#sidebar {
 	max-width: 400px;
-	margin-bottom: 1em;
-}
-
-div.twitter_container{
-	display: block;
-	width: 100%
+	#sidebar-logo {
+		display: block;
+		width: 100%;
+		margin-bottom: 1em;
+	}
+	#sidebar-seals {
+		margin: 1em 0;
+		overflow: auto; // clears floats
+		img {
+			position: relative;
+			display: block;
+			width: calc(50% - 0.5em);
+			margin: 0.2em;
+			&:first-child {
+				float: left;
+			}
+			&:last-child {
+				float: right;
+			}
+		}
+	}
+	div.twitter_container{
+		display: block;
+		width: 100%
+	}
 }
 
 .footer {
