@@ -14,7 +14,11 @@ AcmApp::Application.routes.draw do
   post "/auth/failure", to: 'pages#invalid_request'
   get 'signout', to: 'sessions#destroy', as: 'signout'
   get "/calendar", to: "pages#calendar"
-   get "/officers", to: "pages#officers"
+  get "/officers", to: "pages#officers"
+
+  # External links
+  get "/portfolio" => redirect("https://portfolio.wustl.edu/organization/acm"), as: :portfolio
+  get "/twitter" => redirect("https://twitter.com/WashUACM"), as: :twitter
 
 
   # The priority is based upon order of creation: first created -> highest priority.

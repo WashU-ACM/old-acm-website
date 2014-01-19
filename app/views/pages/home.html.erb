@@ -1,50 +1,60 @@
-<div  class = "row">
+<div  class="row">
 
-  <!-- Welcome message -->
-  <div class ="span7 grey_box">
-  
-    <img src = "/acm_logo.jpg" id = "acm_logo" />
-    <h1>Welcome to ACM</h1>
-    
-    The ACM sponsors coding challenges, department forums, and social events in Computer Science and Engineering.
-    We are the primary student organization in the department, representing all students in CSE. 
-    
-   </div>
-  
+	<!-- Welcome message -->
+	<div class="span9">
+		<div class="hero-unit">
+
+			<h1>Welcome to ACM.</h1>
+			
+			We sponsor coding challenges, presentations, colloquiums, workshops, and social events in Computer Science and Engineering.  We're open to all students, whether or not you are majoring in CSE.  <%= link_to "Join us on Portfolio", portfolio_path %> and <%= link_to "follow us on Twitter", twitter_path %> to stay updated on the latest news and events from ACM.  Read below for just a few of the things that we do.
+		</div>
+		
+	</div>
+	
 </div>
 
-<div  class = "row">
-  <div class = span7>
-    <div class = home_element>
-      <span class = mini_head> Programmer Matching</span><br>
-	ACM is proud to launch Programmer Matching. This new system connects students with great ideas
-	to programmers who can make it a reality. It's as easy as signing in, creating a profiles, and 
-	posting a project. <br/><br/>
-	
-	<a class = home_button href = "/projects" >Click here to begin >></a>
-	
-    </div>
-    
-    
-    <div class = home_element>
-      <span class = mini_head>Meet the Officers</span><br>
-	We've elected new officers for 2014. Check out their profiles below!<br /><br/>
-	
-	<a class = home_button href = "/officers" >Officer Profiles >></a>
-	
-    </div>   
-    
-    <div class = home_element>
-      <span class = mini_head>ICPC Solutions</span><br>
-      
-      <b> (In progress)</b><br>
-      
-	We plan add a space for ICPC entries very soon. Users will be able to create their own entreis and browse
-	existing ones as well. Look for a link to that soon! <br /><br/>
-	
-	<a class = home_button style = "color: #DF7401" href = "" >Coming Soon!</a>
-	
-    </div>
-   
-  </div>
+<div  class="row">
+	<div class="span3">
+		<h3>Project Matching</h3>
+		<p class="lead">
+			Helping WashU developers find ideas.
+		</p>
+		<p>
+			Are you a CSE student looking for a cool project to make?  Are you someone with an idea looking for a CSE student to make it happen?
+		</p>
+		<p>
+			We will soon be launching <strong>ACM Project Matching</strong>.  This new system connects students with great ideas with engineers who can make it a reality.  It's as easy as signing in, creating a profiles, and posting a project.
+		</p>
+		<p>
+			<%= link_to "Preview \u00BB", projects_path, class: "home_button" %>
+		</p>
+	</div>
+	<div class="span3">
+		<h3>Thursday Tech Talks</h3>
+		<p class="lead">
+			The things you should know but no one ever told you.
+		</p>
+		<p>
+			Ever wanted to know how to conquer a coding interview?  Or know how to build an application in the cloud?  Or how to navigate your way through the depths of UNIX?  Or learn about the cutting-edge research in our department?
+		</p>
+		<p>
+			Join us for Thursday Tech Talks, or T3, <strong>every Thursday at 7:30 in the Gregg Technology Classroom</strong>.  Look for announcements about the week's special guest on Portfolio and Twitter.
+		</p>
+	</div>
+	<div class="span3">
+		<h3>Code and Cookies</h3>
+		<p class="lead">
+			Think you have what it takes to conquer the ICPC or the Google Code Jam?
+		</p>
+		<p>
+			We send teams each year to the International Collegiate Programming Contest (ICPC) in November and the Google Code Jam in April.  Think you have what it takes?  Watch out for announcements about <strong>Code and Cookies</strong>, our accellerated training sessions for coding competitions.
+		</p>
+		<p>
+			Want to practice on old ICPC problems and submit your solution for future students to see?  Check back soon for an ICPC solution submission board, right here on ACM.
+		</p>
+		<p>
+			<a class="home_button" style="color: #DF7401">Coming Soon!</a>
+		</p>
+	</div>
+
 </div>
