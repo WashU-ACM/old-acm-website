@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
 	<title><%= @title ? "#{@title} - " : "" %>WashU ACM</title>
 	<%= favicon_link_tag "favicon.ico" %>
 	<%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
 	<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<%= csrf_meta_tags %>
 </head>
 <body>
@@ -53,7 +55,10 @@
 
 				<%= link_to image_tag("washu-acm.svg", id: "logo"), root_path %>
 
-				<a class="twitter-timeline" height="400"  href="https://twitter.com/WashUACM"  data-widget-id="424405968739237888">Tweets by @WashUACM</a>
+				<%= link_to "Tweets by @WashUACM", twitter_path, class: "twitter-timeline", id: "sidebar-twitter", :"data-widget-id" => "424405968739237888" %>
+				<script type="text/javascript">
+					document.getElementById("sidebar-twitter").setAttribute("height", 400); // necessary to pass the validator
+				</script>
 				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?"http":"https";if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
 			</div>
@@ -62,13 +67,17 @@
 		<div class="row footer">
 			<div class="span6">
 				<p class="lead">
-					Contact us at <script>window.writeAddr()</script>
+					Contact us at <span id="contact"></span>
+					<script type="text/javascript">
+						document.getElementById("contact").appendChild(window.acmAddr());
+					</script>
 				</p>
 			</div>
-			<div class="span4">
+			<div class="span3">
 				Web site designed by Brandon Meeks and Shane Carr
 			</div>
-			<div class="span2" style="text-align: right;">
+			<div class="span3" style="text-align: right;">
+				<%= link_to image_tag("html5.svg"), validator_path %>
 				<img alt="Ssl_trust_logo" onclick="window.open('https://www.ssl.com/site_seals/48e5a768-52d9ccfe/site_report', 'site_report','height=500, width=400, top=100, left=100')" onmouseover="this.style.cursor='pointer'" src="https://www.ssl.com/images/ssl_trust_logo.gif" style="border: none;" />
 			</div>
 		</div>

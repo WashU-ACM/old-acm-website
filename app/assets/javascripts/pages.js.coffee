@@ -3,11 +3,11 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 # Obfuscate address
-window.writeAddr = ->
+window.acmAddr = ->
 	username = "acm"
 	hostname = "wustl.edu"
 	addr = username + "\u0040" + hostname;
 	atag = document.createElement "a"
 	atag.setAttribute "href", "mailto\u003A" + addr
 	atag.appendChild document.createTextNode addr
-	document.write atag.outerHTML
+	return atag

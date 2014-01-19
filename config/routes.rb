@@ -19,6 +19,7 @@ AcmApp::Application.routes.draw do
   # External links
   get "/portfolio" => redirect("https://portfolio.wustl.edu/organization/acm"), as: :portfolio
   get "/twitter" => redirect("https://twitter.com/WashUACM"), as: :twitter
+  get "/validator" => redirect("http://validator.w3.org/check?uri=https%3A%2F%2Facm.wustl.edu"), as: :validator
 
 
   # The priority is based upon order of creation: first created -> highest priority.
