@@ -34,7 +34,11 @@ class ProjectsController < ApplicationController
 
   # GET /projects/new
   def new
+    if !current_user
+      redirect_to "/invalid_request"
+    else
     @project = Project.new
+    end
   end
 
   # GET /projects/1/edit
