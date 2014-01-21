@@ -62,6 +62,7 @@ GEM
     mime-types (1.25.1)
     minitest (4.7.5)
     multi_json (1.8.2)
+    mysql2 (0.3.14)
     omniauth (1.1.4)
       hashie (>= 1.2, < 3)
       rack
@@ -144,6 +145,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   less-rails
+  mysql2
   omniauth-openid
   omniauth-shibboleth
   rails (= 4.0.0)
