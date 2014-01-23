@@ -21,6 +21,8 @@ AcmApp::Application.routes.draw do
   get "/twitter" => redirect("https://twitter.com/WashUACM"), as: :twitter
   get "/validator" => redirect("http://validator.w3.org/check?uri=https%3A%2F%2Facm.wustl.edu"), as: :validator
 
+  # Error pages
+  get "/404", :to => "pages#not_found"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
