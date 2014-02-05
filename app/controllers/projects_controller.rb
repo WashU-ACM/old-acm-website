@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:interest, :show, :edit, :update, :destroy]
-
+  before_action :require_login, except: [:index]
   
   #constants for the "Enumerated Type" field "state"
   

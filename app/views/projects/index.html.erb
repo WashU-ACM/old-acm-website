@@ -1,43 +1,27 @@
 <%- model_class = Project -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
-</div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-     
-      <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:state) %></th>
-      <th><%= model_class.human_attribute_name(:owner_id) %></th>
+<h1>Project Listings</h1>
+<p class="lead">Sign in with your WUSTL Key to view details on projects and post projects of your own!</p>
 
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @projects.each do |project| %>
-      <tr>
-    
-        <td><%= project.name %></td>
-        <td><%= project.state %></td>
-        <td><%= User.find(project.owner_id).first_name %> <%= User.find(project.owner_id).last_name %></td>
-        <td>
-        <% if current_user && current_user.id == project.owner_id %>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_project_path(project), :class => 'btn btn-mini' %>
-        <% end %>
-          <%= link_to t('.show', :default => t("helpers.links.show")),
-                      project_path(project), :class => 'btn btn-mini' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 <% if current_user %>
-<%= link_to t('.new', :default => t("helpers.links.new")),
+<%= link_to "Post a Project",
             new_project_path,
             :class => 'btn btn-primary' %>
 <% end %>
-<%= link_to t('.home', :default => t("helpers.links.home")),
-            :root,
-            :class => 'btn btn-primary' %>
+
+<% @projects.each do |project| %>
+<div class="media acm-project-listings">
+  <a class="pull-left" href="#">
+    <%= image_tag "officers/2014/shane.jpg", class: "img-polaroid acm-project-image" %>
+  </a>
+  <div class="media-body">
+    <h4 class="media-heading">
+      <%= current_user ? link_to(project.name, project) : project.name %>
+      <small>posted by <%= project.owner.full_name %></small>
+    </h4>
+    <p>
+      <%= project.description %>
+    </p>
+  </div>
+</div>
+<% end %>
 
