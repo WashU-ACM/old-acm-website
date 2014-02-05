@@ -31,8 +31,10 @@
     <%= hidden_field_tag "user[technology_ids][]", nil %>
     <% Technology.all.each do |technology| %>
     <div class="controls">
-      <%= check_box_tag "user[technology_ids][]", technology.id, @user.technology_ids.include?(technology.id) %>
-      <%= technology.name %><br/>
+      <label>
+        <%= check_box_tag "user[technology_ids][]", technology.id, @user.technology_ids.include?(technology.id) %>
+        <%= technology.name %>
+      </label>
      </div>
      <% end %>
   </div>

@@ -30,8 +30,7 @@
 				</ul>
 				<div class="pull-right navbar-auth">
 					<% if current_user %>
-					<div class="login" >Welcome, <%= current_user.first_name %></br>
-						<%= link_to "Sign out", signout_path %> | <%= link_to "My Profile", current_user %>		
+					<div class="navbar-username" >Welcome, <%= link_to current_user.first_name, current_user %>!</br>	
 					</div>
 					<% else %>
 					Sign in with
