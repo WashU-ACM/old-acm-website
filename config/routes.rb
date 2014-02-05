@@ -14,7 +14,10 @@ AcmApp::Application.routes.draw do
   post "/auth/failure", to: 'pages#invalid_request'
   get 'signout', to: 'sessions#destroy', as: 'signout'
   get "/calendar", to: "pages#calendar"
-  get "/officers", to: "pages#officers"
+  get "/officers", to: "officers#officers_2014"
+
+  # Officers
+  get "/officers_index", to: "officers#index"
 
   # External links
   get "/portfolio" => redirect("https://portfolio.wustl.edu/organization/acm"), as: :portfolio
