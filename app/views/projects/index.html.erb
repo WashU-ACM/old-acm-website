@@ -10,14 +10,14 @@
 
 <% @projects.each do |project| %>
 <div class="media acm-project-listings">
-  <a class="pull-left" href="#">
-    <%= image_tag "officers/2014/shane.jpg", class: "img-polaroid acm-project-image" %>
-  </a>
+  <%= image_tag "officers/2014/shane.jpg", class: "img-polaroid acm-project-image pull-left" %>
   <div class="media-body">
     <h4 class="media-heading">
       <%= current_user ? link_to(project.name, project) : project.name %>
-      <small>posted by <%= project.owner.full_name %></small>
     </h4>
+    <p>
+      <em>Posted by <%= project.owner.full_name %> on <%= project.created_at.to_s(:month_day_year_words) %></em>
+    </p>
     <p>
       <%= project.description %>
     </p>
