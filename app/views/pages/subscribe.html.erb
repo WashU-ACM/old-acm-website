@@ -6,7 +6,7 @@
        We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
 </style>
 <div id="mc_embed_signup">
-<form action="http://wustl.us3.list-manage1.com/subscribe/post?u=4cf8222d0c67a010da52d1183&amp;id=e5947d8009" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+<form action="http://wustl.us3.list-manage.com/subscribe/post?u=4cf8222d0c67a010da52d1183&amp;id=e5947d8009" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
     <h2>Subscribe to our mailing list</h2>
 <div class="mc-field-group">
     <label for="mce-EMAIL">Email Address </label>
@@ -24,6 +24,19 @@
     <label for="mce-GRADYEAR">Graduation Year (if applicable) </label>
     <input type="number" name="GRADYEAR" class="" value="" id="mce-GRADYEAR">
 </div>
+<div class="mc-field-group">
+    <label for="mce-MMERGE4">Affiliation </label>
+    <select name="MMERGE4" class="" id="mce-MMERGE4">
+    <option value=""></option>
+    <option value="WashU Undergraduate Student">WashU Undergraduate Student</option>
+<option value="WashU Graduate Student">WashU Graduate Student</option>
+<option value="WashU Alum">WashU Alum</option>
+<option value="WashU Faculty">WashU Faculty</option>
+<option value="Industry Representative or Recruiter">Industry Representative or Recruiter</option>
+<option value="Just someone interested in WashU ACM!">Just someone interested in WashU ACM!</option>
+
+    </select>
+</div>
 <div class="mc-field-group input-group">
     <strong>In addition to an ACM newsletter, send info about… </strong>
     <ul><li><input type="checkbox" value="1" name="group[6845][1]" id="mce-group[6845]-6845-0"><label for="mce-group[6845]-6845-0">Code and Cookies (including ICPC)</label></li>
@@ -39,7 +52,7 @@
 </form>
 </div>
 <script type="text/javascript">
-var fnames = new Array();var ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='GRADYEAR';ftypes[3]='number';
+var fnames = new Array();var ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='GRADYEAR';ftypes[3]='number';fnames[4]='MMERGE4';ftypes[4]='dropdown';
 try {
     var jqueryLoaded=jQuery;
     jqueryLoaded=true;
@@ -103,7 +116,7 @@ function mce_init_form(){
       var options = { errorClass: 'mce_inline_error', errorElement: 'div', onkeyup: function(){}, onfocusout:function(){}, onblur:function(){}  };
       var mce_validator = $("#mc-embedded-subscribe-form").validate(options);
       $("#mc-embedded-subscribe-form").unbind('submit');//remove the validator so we can get into beforeSubmit on the ajaxform, which then calls the validator
-      options = { url: 'http://wustl.us3.list-manage.com/subscribe/post-json?u=4cf8222d0c67a010da52d1183&id=e5947d8009&c=?', type: 'GET', dataType: 'json', contentType: "application/json; charset=utf-8",
+      options = { url: 'http://wustl.us3.list-manage1.com/subscribe/post-json?u=4cf8222d0c67a010da52d1183&id=e5947d8009&c=?', type: 'GET', dataType: 'json', contentType: "application/json; charset=utf-8",
                     beforeSubmit: function(){
                         $('#mce_tmp_error_msg').remove();
                         $('.datefield','#mc_embed_signup').each(
