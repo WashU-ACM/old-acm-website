@@ -1,0 +1,25 @@
+<h1>Listing icpc_entries</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @icpc_entries.each do |icpc_entry| %>
+      <tr>
+        <td><%= link_to 'Show', icpc_entry %></td>
+        <td><%= link_to 'Edit', edit_icpc_entry_path(icpc_entry) %></td>
+        <td><%= link_to 'Destroy', icpc_entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Icpc entry', new_icpc_entry_path %>

@@ -1,14 +1,23 @@
+<script type="text/javascript">
+  $(document).ready(function(){
+
+    $('.wysihtml5').each(function(i, elem) {
+      $(elem).wysihtml5();
+    });
+
+  })
+</script>
 <%= form_for @project, :html => { :class => 'form-horizontal' } do |f| %>
   <div class="control-group">
-    <%= f.label :name, :class => 'control-label' %>
+    <%= f.label :title, :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :name, :class => 'text_field' %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :description, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_area :description, :class => 'text_area' %>
+    <%= f.label :Description, :class => 'control-label' %>
+    <div class="controls">     
+	<%= f.text_area :description, :class => 'wysihtml5' %>
     </div>
   </div>
   <div class="control-group">
@@ -30,7 +39,7 @@
     </div>
    <%= f.hidden_field :owner_id, :value => current_user.id %>
   
-  
+ 
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),

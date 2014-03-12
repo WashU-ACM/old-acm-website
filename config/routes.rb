@@ -2,6 +2,7 @@ AcmApp::Application.routes.draw do
 
   # Resources
   resources :users
+  resources :icpc_entries
   resources :projects do
     member do
       get 'interest' # /projects/:id/interest

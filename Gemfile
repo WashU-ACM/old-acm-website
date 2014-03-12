@@ -9,6 +9,11 @@ gem 'omniauth-shibboleth'
 
 gem 'friendly_id'
 
+gem 'redcarpet', '1.17.2'
+
+gem 'bootstrap-wysihtml5-rails'
+
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
