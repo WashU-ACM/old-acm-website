@@ -13,3 +13,9 @@
  *= require bootstrap-wysihtml5
  */
  
+.active{
+  color: green;
+}
+.inactive{
+    color: red;
+ }

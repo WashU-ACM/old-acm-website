@@ -1,22 +1,36 @@
 <%- model_class = Project -%>
 <div class="page-header">
+  <%= image_tag @project.image_url.to_s, class: "img-polaroid acm-project-image-header pull-left" %>
   <h1><%= @project.name %></h1>
 </div>
+
 
 <dl class="dl-horizontal">
 
   <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
   <dd><%= markdown(@project.description) %></dd>
   
-  <dt><strong><%= model_class.human_attribute_name(:state) %>:</strong></dt>
-  <dd><%= @project.state %></dd>
+  
+  <% if @project.state == 'active' %>	
+    <dt><strong><%= model_class.human_attribute_name(:state) %>:</strong></dt>
+    <dd><span class = 'active'><%= @project.state %><span></dd>
+  <% else %>
+   <dt><strong><%= model_class.human_attribute_name(:state) %>:</strong></dt>
+   <dd><span class = 'active'><%= @project.state %><span></dd>
+  <%end%>
+  
+  
   <dt><strong><%= model_class.human_attribute_name(:owner_id) %>:</strong></dt>
-  <dd><%= User.find(@project.owner_id).first_name %></dd>
+  <dd><%= link_to  User.find(@project.owner_id).first_name+" "+User.find(@project.owner_id).last_name,User.find(@project.owner_id) %></dd>
   <dt><strong>Desired Technologies<%=  %>:</strong></dt>
   <dd>
-     <% @project.technologies.each do |t| %>
-      <li><%= t.name %></li>
-    <% end %>
+    <%techArray = Array.new 
+    @project.technologies.each do |t|
+      str = t.name
+      techArray.push str
+    end %>
+    <%=	techArray.to_sentence(words_connector: ', ') %>
+    <br/>
   </dd>
 
   <dt><strong>Interested Users<%=  %>:</strong></dt>
@@ -27,6 +41,31 @@
   </dd>
   
 </dl>
+
+<!--
+<table>
+  <tr>
+    <td>
+      <strong>State: </strong>
+      <%= @project.state %><br/>
+      <strong>Owner: </strong>
+      <%= User.find(@project.owner_id).first_name %> <br/>
+      <strong>Interested Users: </strong>
+      <% @project.enthusiasts.each do |u| %>
+	<li><%= link_to  u.first_name+" "+u.last_name, u %></li>
+      <% end %>
+    </td>
+    
+    <td>
+    <strong> Description: </strong><br/>
+      <%= markdown(@project.description) %><br/>
+      <strong>Desired Technologies:</strong>
+       <% @project.technologies.each do |t| %>
+      <li><%= t.name %></li>
+    <% end %>
+    </td>
+  </tr>
+</table>-->
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),

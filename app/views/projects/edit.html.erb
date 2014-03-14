@@ -1,5 +1,6 @@
 <%- model_class = Project -%>
 <div class="page-header">
+  <%= image_tag @project.image_url.to_s, class: "img-polaroid acm-project-image-header pull-left" %>
   <h1><%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize %></h1>
   <span class = "mini_head"><%= @project.name %></h3></h1>
 </div>

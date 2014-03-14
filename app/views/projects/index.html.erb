@@ -10,7 +10,7 @@
 
 <% @projects.each do |project| %>
 <div class="media acm-project-listings">
-  <%= image_tag "officers/2014/shane.jpg", class: "img-polaroid acm-project-image pull-left" %>
+  <%= image_tag project.image_url.to_s, class: "img-polaroid acm-project-image pull-left" %>
   <div class="media-body">
     <h4 class="media-heading">
       <%= current_user ? link_to(project.name, project) : project.name %>
@@ -18,9 +18,23 @@
     <p>
       <em>Posted by <%= project.owner.full_name %> on <%= project.created_at.to_s(:month_day_year_words) %></em>
     </p>
-    <p>
-      <%= project.description %>
-    </p>
+    <strong>Desired Technologies:</strong>
+    <!--<% project.technologies.each do |t| %>
+      <%= t.name %>, 
+    <% end %>-->
+    <% techArray = Array.new 
+    project.technologies.each do |t|
+      str = t.name
+      techArray.push str
+    end %>
+    <%=	techArray.to_sentence(words_connector: ', ') %>
+    <br/>
+    <!--setting color of active/inactive text -->
+    <% if project.state == 'active' %>
+      <strong>State: </strong><span class = 'active'><%= project.state %></span>
+    <% else %>
+      <strong>State: </strong><span class = 'inactive'><%= project.state %></span>
+    <%end%>
   </div>
 </div>
 <% end %>
