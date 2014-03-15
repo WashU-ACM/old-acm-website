@@ -42,7 +42,6 @@
 	margin-bottom: 1em;
 }
 
-.wysihtml5-sandbox{
-  width: 550px	!important;
-  height: 200px !important;
+.wysihtml5{
+	width: calc(100% - 10px);
 }
