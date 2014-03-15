@@ -21,3 +21,4 @@
 
 en:
   hello: "Hello world"
+  require_login: "Please sign in with your WUSTL Key to view the page you requested."
