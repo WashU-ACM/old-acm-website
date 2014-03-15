@@ -1,11 +1,12 @@
 <%- model_class = Project -%>
 <h1>Project Listings</h1>
-<p class="lead">Sign in with your WUSTL Key to view details on projects and post projects of your own!</p>
 
 <% if current_user %>
 <%= link_to "Post a Project",
             new_project_path,
             :class => 'btn btn-primary' %>
+<% else %>
+<p class="lead">Sign in with your WUSTL Key to view details on projects and post projects of your own!</p>
 <% end %>
 
 <% @projects.each do |project| %>

@@ -7,6 +7,7 @@ class Project < ActiveRecord::Base
 	
 	#simulated ENUM field in Projects table
 	validates_inclusion_of :state, :in => ["active", "inactive"]
+	validates_presence_of :state
 	def state
 	  read_attribute(:state)
 	end

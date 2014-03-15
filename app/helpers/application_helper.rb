@@ -13,6 +13,10 @@ module ApplicationHelper
 		return flash_messages.join("\n").html_safe
 	end
 
+	def user_email_link(user)
+		link_to user.full_name, "mailto:#{u user.email}"
+	end
+
 	private
 	def boostrap_flash_class(type)
 		case type

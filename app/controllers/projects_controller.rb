@@ -9,7 +9,7 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all
+    @projects = Project.where(state: "active").order(updated_at: :desc)
   end
   
   def interest
@@ -27,6 +27,7 @@ class ProjectsController < ApplicationController
       redirect_to @project
     end
   end
+
   # GET /projects/1
   # GET /projects/1.json
   def show

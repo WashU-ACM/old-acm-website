@@ -1,15 +1,15 @@
 <%- model_class = Project -%>
 <div class="page-header">
   <%= image_tag @project.image_url.to_s, class: "img-polaroid acm-project-image-header pull-left" %>
-  <h1><%= @project.name %></h1>
+  <h2><%= @project.name %></h2>
+  <p class="lead">For more information, contact <%= user_email_link(@project.owner) %></p>
 </div>
 
+<div class="acm-project-description">
+<%= markdown(@project.description) %>
+</div>
 
-<dl class="dl-horizontal">
-
-  <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
-  <dd><%= markdown(@project.description) %></dd>
-  
+<!--
   
   <% if @project.state == 'active' %>	
     <dt><strong><%= model_class.human_attribute_name(:state) %>:</strong></dt>
@@ -24,12 +24,7 @@
   <dd><%= link_to  User.find(@project.owner_id).first_name+" "+User.find(@project.owner_id).last_name,User.find(@project.owner_id) %></dd>
   <dt><strong>Desired Technologies<%=  %>:</strong></dt>
   <dd>
-    <%techArray = Array.new 
-    @project.technologies.each do |t|
-      str = t.name
-      techArray.push str
-    end %>
-    <%=	techArray.to_sentence(words_connector: ', ') %>
+    <%= @project.technologies.map{|t| t.name}.to_sentence(words_connector: ', ') %>
     <br/>
   </dd>
 
@@ -42,7 +37,6 @@
   
 </dl>
 
-<!--
 <table>
   <tr>
     <td>
@@ -65,7 +59,7 @@
     <% end %>
     </td>
   </tr>
-</table>-->
+</table>
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
@@ -90,3 +84,12 @@
   <% end %>
 
 </div>
+
+-->
+
+<% if current_user && current_user.id == @project.owner_id %>
+  <div class="form-actions">
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_project_path(@project), :class => 'btn' %>
+  </div>
+<% end %>

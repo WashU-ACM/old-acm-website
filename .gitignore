@@ -22,3 +22,5 @@ doc/
 .idea
 .secret
 
+# Ignore uploaded files
+public/uploads
