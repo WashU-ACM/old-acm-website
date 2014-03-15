@@ -12,6 +12,7 @@ gem 'friendly_id'
 gem 'redcarpet', '1.17.2'
 
 gem 'bootstrap-wysihtml5-rails'
+gem 'sanitize'
 
 gem 'carrierwave'
 
