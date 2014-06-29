@@ -1,0 +1,44 @@
+<%= form_for @acm_project, :html => { :multipart => true, :class => 'form-horizontal' } do |f| %>
+  <% if @acm_project.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@acm_project.errors.count, "error") %> prohibited this acm_project from being saved:</h2>
+
+      <ul>
+      <% @acm_project.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="control-group">
+    <%= f.label :title, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name, :class => 'text_field' %>
+    </div>
+  </div>
+  
+   <div class="control-group">
+    <%= f.label :description, :class => 'control-label' %>
+    <div class="controls">     
+      <%= f.text_area :description, :rows => 10, :class => 'wysihtml5' %>
+    </div>
+  </div>
+  
+  <div class="control-group">
+    <%= f.label :image, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.file_field :image %>
+    </div>
+  </div>
+  
+  <!--Hidden fields for owner and status of submission -->
+   <%= f.hidden_field :owner_id, :value => current_user.id %>
+   <%= f.hidden_field :status, :value => "pending" %>
+   
+  <div class="form-actions">
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                acm_projects_path, :class => 'btn' %>
+    <%= f.submit "Submit", :class => 'btn btn-primary'%>
+  </div>
+<% end %>

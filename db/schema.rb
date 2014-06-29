@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140318214554) do
+ActiveRecord::Schema.define(version: 20140629175658) do
+
+  create_table "acm_projects", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "owner_id"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image"
+  end
 
   create_table "competencies", force: true do |t|
     t.integer  "user_id"
@@ -37,7 +47,7 @@ ActiveRecord::Schema.define(version: 20140318214554) do
 
   create_table "projects", force: true do |t|
     t.string   "name"
-    t.text     "description"
+    t.text     "description", limit: 255
     t.string   "state"
     t.integer  "owner_id"
     t.datetime "created_at"
@@ -80,6 +90,7 @@ ActiveRecord::Schema.define(version: 20140318214554) do
     t.string   "shib_eppn"
     t.string   "shib_samaccountname"
     t.string   "shib_credid"
+    t.string   "role"
   end
 
 end

@@ -1,0 +1,22 @@
+<h1>ACM Showcase</h1>
+<p> Welcome to the ACM showcase. Here is where members of the ACM community can submit and
+showoff their work right here on the official ACM website. Simply login, submit a description
+of your work, and wait for it to be processed. </p>
+<div class = 'text-center'>
+  <%= link_to 'Submit Entry', new_acm_project_path, :class => 'btn btn-primary' %><br/><br/>
+</div>
+
+
+
+<% if @acm_projects != nil %>
+  <% @acm_projects.each do |acm_project| %>
+  <legend></legend>
+    <div class = "pagination-centered">
+      <%= image_tag acm_project.image_url.to_s, class: "img-polaroid acm-project-image-header" %>
+      <h3><%= link_to acm_project.name, acm_project %></h3>
+      <p class = "text-muted">Submitted by <%= full_name(acm_project.owner_id) %></p>
+    </div>
+  
+  <% end %>
+<% end %>
+

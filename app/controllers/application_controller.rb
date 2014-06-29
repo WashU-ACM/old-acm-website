@@ -12,5 +12,11 @@ class ApplicationController < ActionController::Base
   def require_login
     redirect_to(root_url, notice: t("require_login")) and return if current_user.nil?
   end
-
+  
+  def full_name(id)
+    u = User.find(id)
+    return u.first_name + " " +  u.last_name
+  end
+  helper_method :full_name
+  
 end	

@@ -1,0 +1,17 @@
+<%- model_class = AcmProject -%>
+<div class="page-header">
+  <%= image_tag @acm_project.image_url.to_s, class: "img-polaroid acm-project-image-header pull-left" %>
+  <h2><%= @acm_project.name %></h2>
+</div>
+<br/>
+<br/>
+<div class="acm-project-description">
+<%= markdown(@acm_project.description) %>
+</div>
+
+<!-- Deciding where to send users upon selection of 'back' buttton based on where they came from -->
+<% if URI(request.referer).path == '/submissions' %>
+  <%= link_to 'Back', '/submissions' %>
+  <% else  %>
+  <%= link_to 'Back', '/acm_projects' %>
+<%end %>

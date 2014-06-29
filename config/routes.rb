@@ -1,11 +1,19 @@
 AcmApp::Application.routes.draw do
 
+ 
+
   # Resources
   resources :users
   resources :icpc_entries
   resources :projects do
     member do
       get 'interest' # /projects/:id/interest
+    end
+  end
+  
+  resources :acm_projects do
+    member do
+      get 'approve' # /acm_projects/:id/approve
     end
   end
 
@@ -19,6 +27,8 @@ AcmApp::Application.routes.draw do
   get "/invalid_request", to: 'pages#invalid_request'
   get "/calendar", to: "pages#calendar"
   get "/subscribe", to: "pages#subscribe"
+  get "/admin", to: "pages#admin"
+  get "/submissions", to: "pages#submissions" 
 
   # Officers
   get "/officers", to: "officers#officers_2014"

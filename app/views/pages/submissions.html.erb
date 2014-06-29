@@ -1,0 +1,64 @@
+<h1> Submissions Dashboard </h1>
+<p> Welcome to the Submissions Dashboard. Here admins can approve pending submissions and delete existing entries for the ACM showcase. </p>
+
+
+  <% if @acm_projects != nil %>
+
+    <% if @pending != nil %>
+      <h3> Awaiting Approval </h3>
+    
+      <table class = submissions>
+	<thead>
+	  <tr>
+	    <th>Name</th>
+	    <th>Submitted by</th>
+	    <th>Actions</th>
+	  </tr>
+	</thead>
+  
+	<tbody>
+    
+      <% @pending.each do |acm_project| %>
+	<tr>
+	  <td><%= acm_project.name %></td>
+	  <td><%= User.find(acm_project.owner_id).first_name + " " + User.find(acm_project.owner_id).last_name %></td>
+	  <td><%= link_to 'Details', acm_project, :class => 'btn' %>
+	  <%= link_to 'Approve', approve_acm_project_path(acm_project.id), :class => 'btn' %>
+	  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+	      acm_project_path(acm_project),
+	      :method => 'delete',
+	      :data => { :confirm => 'Are you sure you want to permanently delete this entry?  There is now way of recovering it.' },
+	      :class => 'btn btn-danger' %></td>
+	</tr>
+      <% end %>
+    <% end %>
+    <% if @approved != nil %>
+    <table>
+      <thead>
+      <tr>
+	<th>Name</th>
+	<th>Submitted by</th>
+	<th>Actions</th>
+      </tr>
+    </thead>
+  
+    <tbody>
+      <h3> Approved Submissions </h3>
+      <% @approved.each do |acm_project| %>
+	<tr>
+	  <td><%= acm_project.name %></td>
+	  <td><%= User.find(acm_project.owner_id).first_name + " " +  User.find(acm_project.owner_id).last_name %></td>
+	  <td><%= link_to 'Details', acm_project, :class => 'btn' %>
+	  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+	      acm_project_path(acm_project),
+	      :method => 'delete',
+	      :data => { :confirm => 'Are you sure you want to permanently delete this entry?  There is now way of recovering it.' },
+	      :class => 'btn btn-danger' %></td>
+	  </tr>
+	<% end %>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
