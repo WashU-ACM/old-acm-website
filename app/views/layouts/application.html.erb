@@ -21,16 +21,16 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</a>
-			<%= link_to "ACM", root_path, class: "brand" %>
+			<%= link_to image_tag("acm-grayscale.svg", id: "header-logo"), root_path %>
 			<div class="nav-collapse collapse">
 				<ul class="nav">
 					<li><%= link_to "Calendar", calendar_path %></li>
 					<li><%= link_to "Projects", projects_path %></li>
 					<li><%= link_to "Officers", officers_path %></li>
 					<li><%= link_to "Showcase", acm_projects_path %></li>
-					<!--<% if current_user != nil and current_user.role == "admin" %>-->
-					<li><%= link_to "Admin Tools", admin_path %></li>
-					<!--<% end %> -->
+					<% if current_user != nil and current_user.role == "admin" %>
+						<li><%= link_to "Admin Tools", admin_path %></li>
+					<% end %>
 				</ul>
 				<div class="pull-right navbar-auth">
 					<% if current_user %>
@@ -61,7 +61,7 @@
 				<%= link_to image_tag("washu-acm.svg", id: "sidebar-logo"), root_path %>
 
 				<p>
-					<%= link_to "Subscribe to Mailing List", subscribe_path %>
+					<%= link_to "Subscribe to Mailing List \u00bb", subscribe_path %>
 				</p>
 
 				<%= link_to "Tweets by @WashUACM", twitter_path, class: "twitter-timeline", id: "sidebar-twitter", :"data-widget-id" => "424405968739237888" %>
