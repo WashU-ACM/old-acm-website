@@ -60,9 +60,29 @@
 
 				<%= link_to image_tag("washu-acm.svg", id: "sidebar-logo"), root_path %>
 
-				<p>
+				<p id="sidebar-subscribe">
 					<%= link_to "Subscribe to Mailing List \u00bb", subscribe_path %>
 				</p>
+
+				<div id="sidebar-events">
+					<h3>Upcoming Events</h3>
+					<div id="title-spacer"></div>
+					<div id="sidebar-events-holder"></div>
+					<script id="sidebar-event-template" type="text/x-handlebars-template">
+						<div class="acm-sidebar-event">
+							<h4 class="ase-name">
+								<a href="{{url}}" target="_blank">{{name}}</a>
+							</h4>
+							<div class="ase-time">
+								{{eventTime}}
+							</div>
+							<p class="ase-description">{{description}}</p>
+						</div>
+					</script>
+				</div>
+				<script type="text/javascript">
+					window.sidebarEvents("sidebar-events-holder");
+				</script>
 
 				<%= link_to "Tweets by @WashUACM", twitter_path, class: "twitter-timeline", id: "sidebar-twitter", :"data-widget-id" => "424405968739237888" %>
 				<script type="text/javascript">

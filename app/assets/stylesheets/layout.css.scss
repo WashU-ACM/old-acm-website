@@ -1,4 +1,8 @@
 // Styles for the application layout
+@import "compass/css3/transform";
+
+$acm_blue_dark: rgb(41, 171, 226);
+$acm_blue_light: rgb(0, 113, 188);
 
 #header-logo {
 	float: left;
@@ -21,6 +25,67 @@
 		display: block;
 		width: 100%;
 		margin-bottom: 1em;
+	}
+	#sidebar-subscribe {
+		text-align: center;
+		font-size: 1.2em;
+		margin: 5px auto 10px;
+	}
+	#sidebar-events {
+		$upcoming_events_title_size: 1.3em;
+		$upcoming_events_title_width: 200px;
+
+		h3 {
+			@include rotate(-90deg);
+			position: absolute;
+			float: left;
+			white-space: nowrap;
+			display: block;
+
+			width: $upcoming_events_title_width;
+			text-align: right;
+			margin: 90px 0 0 -90px;
+
+			font-size: $upcoming_events_title_size;
+			line-height: $upcoming_events_title_size;
+			height: $upcoming_events_title_size;
+		}
+		#title-spacer {
+			float: left;
+			width: 20px;
+			height: $upcoming_events_title_width;
+		}
+		#sidebar-events-holder {
+			margin-left: 30px;
+			border-right: 4px solid $acm_blue_dark;
+		}
+
+		.acm-sidebar-event {
+			h4.ase-name {
+				font-size: 1.2em;
+				a {
+					color: inherit;
+				}
+			}
+			.ase-time {
+				float: right;
+				font-style: italic;
+				font-weight: bold;
+				margin: -5px 0 0 5px;
+				padding: 0 5px 0 5px;
+				text-align: right;
+				border-bottom: 4px solid $acm_blue_dark;
+				color: $acm_blue_dark;
+			}
+			.ase-description {
+				margin: 0 5px 0 0;
+			}
+		}
+	}
+	#sidebar-twitter {
+		display: block;
+		clear: both;
+		margin-top: 10px;
 	}
 	#sidebar-seals {
 		margin: 1em 0;

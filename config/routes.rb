@@ -17,6 +17,10 @@ AcmApp::Application.routes.draw do
     end
   end
 
+  # Calendar Proxy
+  get "/calendar/upcoming.json", to: "calendar_proxy#upcoming"
+  get "/calendar/recent.json", to: "calendar_proxy#recent"
+
   # Authentication
   match "/auth/:provider/callback", to: "sessions#create", via: [:get, :post]
   post "/auth/failure", to: "pages#invalid_request"
