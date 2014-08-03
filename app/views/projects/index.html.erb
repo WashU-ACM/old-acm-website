@@ -31,6 +31,15 @@
     <%=	techArray.to_sentence(words_connector: ', ') %>
     <br/>
     <!--setting color of active/inactive text -->
+    <strong>Project Category: </strong>
+    <% if project.category != nil %>
+      <%= project.category.name %>
+    <% else %>	<!-- shouldn't even happen however just in case... -->
+      None	
+    <% end %>
+    
+    <br/>
+    
     <% if project.state == 'active' %>
       <strong>State: </strong><span class = 'active'><%= project.state %></span>
     <% else %>

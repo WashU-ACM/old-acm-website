@@ -3,6 +3,8 @@ class Project < ActiveRecord::Base
   has_and_belongs_to_many :enthusiasts, class_name: "User"
   has_and_belongs_to_many :technologies
   after_initialize :init
+  
+  belongs_to :category
 
   mount_uploader :image, ImageUploader
 	
