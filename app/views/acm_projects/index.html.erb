@@ -10,12 +10,20 @@ of your work, and wait for it to be processed. </p>
 
 <% if @acm_projects != nil %>
   <% @acm_projects.each do |acm_project| %>
-  <legend></legend>
-    <div class = "pagination-centered">
+  <div class = "project-holder">
+      <div class = "acm-project-header">
+      <br/>
       <%= image_tag acm_project.image_url.to_s, class: "img-polaroid acm-project-image-header" %>
-      <h3><%= link_to acm_project.name, acm_project %></h3>
-      <p class = "text-muted">Submitted by <%= full_name(acm_project.owner_id) %></p>
-    </div>
+      <h3><%= acm_project.name %></h3>
+      <span class = "text-muted">Submitted by <%= full_name(acm_project.owner_id) %></span>
+      </div>
+      <div class = "project-description">
+	  <%= truncate(acm_project.description, length: 200) %>
+	  <%= link_to "Read more", acm_project %>
+      </div>
+  </div>
+  
+  <br/>
   
   <% end %>
 <% end %>
