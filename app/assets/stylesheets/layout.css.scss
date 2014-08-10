@@ -117,3 +117,13 @@ $acm_blue_light: rgb(0, 113, 188);
 	width: calc(100% - 10px);
 }
 
+#tag_cloud {
+  width: 275px;
+  background-color: #D8D8D8;
+  padding: 7px;
+  border-radius: 5px;
+  line-height: 1.6em;
+  .s { font-size: 0.8em; }
+  .m { font-size: 1.2em; }
+  .l { font-size: 1.8em; }
+}

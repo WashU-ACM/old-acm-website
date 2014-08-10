@@ -39,6 +39,9 @@ AcmApp::Application.routes.draw do
   get "/officers_index", to: "officers#officers_index"
   get "/officers_2014", to: "officers#officers_2014"
   get "/officers_2013", to: "officers#officers_2013"
+  
+  #tagging
+  get 'tags/:tag', to: 'projects#index', as: :tag
 
   # External links
   get "/portfolio" => redirect("https://portfolio.wustl.edu/organization/acm"), as: :portfolio

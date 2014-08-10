@@ -7,6 +7,9 @@ class Project < ActiveRecord::Base
   belongs_to :category
 
   mount_uploader :image, ImageUploader
+  
+  #tagging
+  acts_as_taggable
 	
   #simulated ENUM field in Projects table
   validates_inclusion_of :state, :in => ["active", "inactive"]

@@ -12,6 +12,7 @@ module ApplicationHelper
 		end
 		return flash_messages.join("\n").html_safe
 	end
+	
 
 	def user_email_link(user)
 		link_to user.full_name, "mailto:#{u user.email}"
