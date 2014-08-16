@@ -16,7 +16,12 @@ class User < ActiveRecord::Base
   def self.from_omniauth(auth)
     uid_field = uid_field_from_provider auth[:provider]
     return nil if uid_field.nil?
-    return where({ uid_field => auth["uid"] }).first || create_from_omniauth(auth)
+
+    user = where({ uid_field => auth["uid"] }).first
+    if user.nil?
+      user = create_from_omniauth(auth)
+    end
+    return user
   end
   
   def self.create_from_omniauth(auth)
@@ -30,13 +35,14 @@ class User < ActiveRecord::Base
       # Provider-specific properties
       case auth[:provider]
         when "open_id"
-        user.open_id = auth["uid"]
+        when "google"
+          user.open_id = auth["uid"]
         when "shibboleth"
-        user.shib_uid = auth["uid"]
-        user.shib_eppn = auth["extra"]["raw_info"]["eppn"]
-        user.shib_affiliation = auth["extra"]["raw_info"]["affiliation"]
-        user.shib_samaccountname = auth["extra"]["raw_info"]["sAMAccountName"]
-        user.shib_credid = auth["extra"]["raw_info"]["wustlEduCredId"]
+          user.shib_uid = auth["uid"]
+          user.shib_eppn = auth["extra"]["raw_info"]["eppn"]
+          user.shib_affiliation = auth["extra"]["raw_info"]["affiliation"]
+          user.shib_samaccountname = auth["extra"]["raw_info"]["sAMAccountName"]
+          user.shib_credid = auth["extra"]["raw_info"]["wustlEduCredId"]
       end
     end
   end

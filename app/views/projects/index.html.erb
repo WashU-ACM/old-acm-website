@@ -1,6 +1,12 @@
 <%- model_class = Project -%>
 <h1>Project Listings</h1>
-
+<div id="tag_cloud" class = "pull-right">
+  <strong> Tags: </strong>
+  <br/>
+  <% tag_cloud Project.tag_counts, %w[s m l] do |tag, css_class| %>
+    <%= link_to tag.name, tag_path(tag.name), class: css_class %>
+  <% end %>
+</div>
 <% if current_user %>
 <%= link_to "Post a Project",
             new_project_path,
@@ -19,18 +25,41 @@
     <p>
       <em>Posted by <%= project.owner.full_name %> on <%= project.created_at.to_s(:month_day_year_words) %></em>
     </p>
-    <strong>Desired Technologies:</strong>
-    <!--<% project.technologies.each do |t| %>
+    
+    
+    <!--<strong>Desired Technologies:</strong>
+    <% project.technologies.each do |t| %>
       <%= t.name %>, 
-    <% end %>-->
+    <% end %>
     <% techArray = Array.new 
     project.technologies.each do |t|
       str = t.name
       techArray.push str
     end %>
     <%=	techArray.to_sentence(words_connector: ', ') %>
+    <br/>-->
+    
+    
+    <!-- taggin -->
+    <strong>Tags: </strong>
+    <% if project.tag_list.any? %>
+       <%= raw project.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+    <% else %>
+      none
+    <% end %>
     <br/>
+    
+    
     <!--setting color of active/inactive text -->
+    <strong>Project Category: </strong>
+    <% if project.category != nil %>
+      <%= project.category.name %>
+    <% else %>	<!-- shouldn't even happen however just in case... -->
+      None	
+    <% end %>
+    
+    <br/>
+    
     <% if project.state == 'active' %>
       <strong>State: </strong><span class = 'active'><%= project.state %></span>
     <% else %>

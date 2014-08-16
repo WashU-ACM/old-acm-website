@@ -1,0 +1,2 @@
+module CalendarProxyHelper
+end

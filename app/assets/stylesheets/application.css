@@ -19,3 +19,8 @@
 .inactive{
     color: red;
  }
+ 
+.navbar-inner{
+  background-color: black;
+}
+

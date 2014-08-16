@@ -11,7 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140318214554) do
+ActiveRecord::Schema.define(version: 20140810174215) do
+
+  create_table "acm_projects", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "owner_id"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image"
+  end
+
+  create_table "categories", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "competencies", force: true do |t|
     t.integer  "user_id"
@@ -37,12 +53,13 @@ ActiveRecord::Schema.define(version: 20140318214554) do
 
   create_table "projects", force: true do |t|
     t.string   "name"
-    t.text     "description"
+    t.text     "description", limit: 255
     t.string   "state"
     t.integer  "owner_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image"
+    t.integer  "category_id"
   end
 
   create_table "projects_technologies", id: false, force: true do |t|
@@ -54,6 +71,26 @@ ActiveRecord::Schema.define(version: 20140318214554) do
     t.integer "project_id"
     t.integer "user_id"
   end
+
+  create_table "taggings", force: true do |t|
+    t.integer  "tag_id"
+    t.integer  "taggable_id"
+    t.string   "taggable_type"
+    t.integer  "tagger_id"
+    t.string   "tagger_type"
+    t.string   "context",       limit: 128
+    t.datetime "created_at"
+  end
+
+  add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
+  add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context"
+
+  create_table "tags", force: true do |t|
+    t.string  "name"
+    t.integer "taggings_count", default: 0
+  end
+
+  add_index "tags", ["name"], name: "index_tags_on_name", unique: true
 
   create_table "technologies", force: true do |t|
     t.string   "name"
@@ -80,6 +117,7 @@ ActiveRecord::Schema.define(version: 20140318214554) do
     t.string   "shib_eppn"
     t.string   "shib_samaccountname"
     t.string   "shib_credid"
+    t.string   "role"
   end
 
 end

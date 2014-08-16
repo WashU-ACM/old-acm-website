@@ -8,8 +8,13 @@ class ProjectsController < ApplicationController
   
   # GET /projects
   # GET /projects.json
-  def index
-    @projects = Project.where(state: "active").order(updated_at: :desc)
+  def index  
+      if params[:tag]
+	activeProjects = Project.where(state: "active").order(updated_at: :desc)
+	@projects = activeProjects.tagged_with(params[:tag])
+    else
+      @projects = Project.where(state: "active").order(updated_at: :desc)
+    end   
   end
   
   def interest

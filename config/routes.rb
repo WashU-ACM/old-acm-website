@@ -1,5 +1,7 @@
 AcmApp::Application.routes.draw do
 
+ 
+
   # Resources
   resources :users
   resources :icpc_entries
@@ -8,6 +10,16 @@ AcmApp::Application.routes.draw do
       get 'interest' # /projects/:id/interest
     end
   end
+  
+  resources :acm_projects do
+    member do
+      get 'approve' # /acm_projects/:id/approve
+    end
+  end
+
+  # Calendar Proxy
+  get "/calendar/upcoming.json", to: "calendar_proxy#upcoming"
+  get "/calendar/recent.json", to: "calendar_proxy#recent"
 
   # Authentication
   match "/auth/:provider/callback", to: "sessions#create", via: [:get, :post]
@@ -19,12 +31,17 @@ AcmApp::Application.routes.draw do
   get "/invalid_request", to: 'pages#invalid_request'
   get "/calendar", to: "pages#calendar"
   get "/subscribe", to: "pages#subscribe"
+  get "/admin", to: "pages#admin"
+  get "/submissions", to: "pages#submissions" 
 
   # Officers
   get "/officers", to: "officers#officers_2014"
   get "/officers_index", to: "officers#officers_index"
   get "/officers_2014", to: "officers#officers_2014"
   get "/officers_2013", to: "officers#officers_2013"
+  
+  #tagging
+  get 'tags/:tag', to: 'projects#index', as: :tag
 
   # External links
   get "/portfolio" => redirect("https://portfolio.wustl.edu/organization/acm"), as: :portfolio
