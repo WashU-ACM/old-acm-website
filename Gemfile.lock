@@ -37,6 +37,9 @@ GEM
     bootstrap-wysihtml5-rails (0.3.1.23)
       railties (>= 3.0)
     builder (3.1.4)
+    byebug (3.2.0)
+      columnize (~> 0.8)
+      debugger-linecache (~> 1.2)
     carrierwave (0.10.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -50,6 +53,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
+    columnize (0.8.9)
     commonjs (0.2.7)
     compass (0.12.2)
       chunky_png (~> 1.2)
@@ -57,6 +61,7 @@ GEM
       sass (~> 3.1)
     compass-rails (2.0.0)
       compass (>= 0.12.2)
+    debugger-linecache (1.2.0)
     erubis (2.7.0)
     execjs (2.0.2)
     extlib (0.9.16)
@@ -196,6 +201,7 @@ PLATFORMS
 DEPENDENCIES
   acts-as-taggable-on
   bootstrap-wysihtml5-rails
+  byebug
   carrierwave
   coffee-rails (~> 4.0.0)
   compass-rails

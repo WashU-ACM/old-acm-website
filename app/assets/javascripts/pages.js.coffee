@@ -14,7 +14,7 @@ window.acmAddr = ->
 
 # Events
 window.sidebarEvents = (elementId) ->
-	$.get "calendar/upcoming.json", (data) ->
+	$.get "/calendar/upcoming.json", (data) ->
 		source = $("#sidebar-event-template").html()
 		template = Handlebars.compile(source)
 		data.forEach (event) ->

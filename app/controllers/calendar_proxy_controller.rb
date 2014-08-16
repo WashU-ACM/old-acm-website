@@ -19,6 +19,9 @@ class CalendarProxyController < ActionController::Base
 		valid_objects.reject! do |obj|
 			obj[:start_time] < 1.hour.ago
 		end
+		valid_objects.each do |obj|
+			obj[:description] = obj[:description].lines.first.chop
+		end
 		valid_objects.sort_by!{|obj| obj[:start_time]}
 
 		render json: valid_objects[0..2]
