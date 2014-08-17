@@ -205,7 +205,7 @@ DEPENDENCIES
   carrierwave
   coffee-rails (~> 4.0.0)
   compass-rails
-  friendly_id
+  friendly_id (~> 5.0.0)
   google-api-client
   jbuilder (~> 1.2)
   jquery-rails

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140817012217) do
+ActiveRecord::Schema.define(version: 20140817084714) do
 
   create_table "acm_projects", force: true do |t|
     t.string   "name"
@@ -21,7 +21,10 @@ ActiveRecord::Schema.define(version: 20140817012217) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image"
+    t.string   "slug"
   end
+
+  add_index "acm_projects", ["slug"], name: "index_acm_projects_on_slug", unique: true
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -54,14 +57,17 @@ ActiveRecord::Schema.define(version: 20140817012217) do
 
   create_table "projects", force: true do |t|
     t.string   "name"
-    t.text     "description"
+    t.text     "description", limit: 255
     t.string   "state"
     t.integer  "owner_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image"
     t.integer  "category_id"
+    t.string   "slug"
   end
+
+  add_index "projects", ["slug"], name: "index_projects_on_slug", unique: true
 
   create_table "projects_technologies", id: false, force: true do |t|
     t.integer "project_id"
@@ -83,15 +89,15 @@ ActiveRecord::Schema.define(version: 20140817012217) do
     t.datetime "created_at"
   end
 
-  add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true, using: :btree
-  add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context", using: :btree
+  add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
+  add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context"
 
   create_table "tags", force: true do |t|
     t.string  "name"
     t.integer "taggings_count", default: 0
   end
 
-  add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
+  add_index "tags", ["name"], name: "index_tags_on_name", unique: true
 
   create_table "technologies", force: true do |t|
     t.string   "name"
@@ -119,6 +125,9 @@ ActiveRecord::Schema.define(version: 20140817012217) do
     t.string   "shib_samaccountname"
     t.string   "shib_credid"
     t.string   "role"
+    t.string   "slug"
   end
+
+  add_index "users", ["slug"], name: "index_users_on_slug", unique: true
 
 end

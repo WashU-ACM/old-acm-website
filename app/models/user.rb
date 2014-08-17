@@ -1,4 +1,8 @@
 class User < ActiveRecord::Base
+
+  extend FriendlyId
+  friendly_id :slug_candidates, use: :slugged
+
 	#relationships
 	has_many :icpc_entries
 	has_many :projects, foreign_key: "owner_id"
@@ -71,6 +75,16 @@ class User < ActiveRecord::Base
   private
   def set_defaults
     self.personal_bio = "I am a member of WashU ACM."
+  end
+
+  def slug_candidates
+    [
+      :full_name,
+      [:full_name, :created_at_year_month]
+    ]
+  end
+  def created_at_year_month
+    self.created_at.strftime("%b %Y")
   end
 
 end

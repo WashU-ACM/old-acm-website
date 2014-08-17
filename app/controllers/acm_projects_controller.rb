@@ -74,7 +74,7 @@ class AcmProjectsController < ApplicationController
 	private
 	# Use callbacks to share common setup or constraints between actions.
 	def set_acm_project
-		@acm_project = AcmProject.find(params[:id])
+		@acm_project = AcmProject.friendly.find(params[:id])
 	end
 
 	# Never trust parameters from the scary internet, only allow the white list through.

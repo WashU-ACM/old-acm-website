@@ -1,4 +1,8 @@
 class Project < ActiveRecord::Base
+
+  extend FriendlyId
+  friendly_id :slug_candidates, use: :slugged
+
   belongs_to :owner, class_name: "User"
   validates_presence_of :owner
   
@@ -6,6 +10,8 @@ class Project < ActiveRecord::Base
   has_and_belongs_to_many :technologies
   after_initialize :init
   mount_uploader :image, ImageUploader
+
+  validates_presence_of :name
 
   belongs_to :category
   validates_presence_of :category
@@ -32,6 +38,18 @@ class Project < ActiveRecord::Base
     if self.state == "" || !self.state
       self.state = "active"
     end
-  end	
+  end
+
+  def slug_candidates
+    [
+      :name,
+      [:name, :created_at_year_month],
+      [:name, :tag_list],
+      [:name, :created_at_year_month, :tag_list]
+    ]
+  end
+  def created_at_year_month
+    self.created_at.strftime("%b %Y")
+  end
 	
 end

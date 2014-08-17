@@ -1,4 +1,8 @@
 class AcmProject < ActiveRecord::Base
+
+	extend FriendlyId
+	friendly_id :slug_candidates, use: :slugged
+
 	belongs_to :owner, class_name: "User"
 	validates_presence_of :owner
 
@@ -7,7 +11,7 @@ class AcmProject < ActiveRecord::Base
 
 	validates_presence_of :name
 	validates_presence_of :description
-	
+
 	after_initialize :init
 	
 	# simulated ENUM field in AcmProjects table
@@ -33,6 +37,16 @@ class AcmProject < ActiveRecord::Base
 		if self.status == "" || !self.status
 			self.status = "pending"
 		end
+	end
+
+	def slug_candidates
+		[
+			:name,
+			[:name, :created_at_year_month]
+		]
+	end
+	def created_at_year_month
+		self.created_at.strftime("%b %Y")
 	end
 
 end

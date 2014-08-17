@@ -7,7 +7,7 @@ gem 'twitter-bootstrap-rails'
 gem 'omniauth-openid'
 gem 'omniauth-shibboleth'
 
-gem 'friendly_id'
+gem 'friendly_id', '~> 5.0.0'
 
 gem 'redcarpet', '1.17.2'
 
