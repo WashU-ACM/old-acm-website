@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:interest, :show, :edit, :update, :destroy]
   before_action :require_login, except: [:index]
+  before_action :require_permission, only: [:edit, :update, :destroy]
   
   #constants for the "Enumerated Type" field "state"
   
@@ -39,25 +40,18 @@ class ProjectsController < ApplicationController
 
   # GET /projects/new
   def new
-    if !current_user
-      redirect_to "/invalid_request"
-    else
     @project = Project.new
-    end
   end
 
   # GET /projects/1/edit
   def edit
-    if @project.owner_id != current_user.id
-	redirect_to "/invalid_request"
-     end
   end
 
   # POST /projects
   # POST /projects.json
   def create
     @project = Project.new(project_params)
-
+    @project.owner = current_user
     respond_to do |format|
       if @project.save
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
@@ -109,5 +103,9 @@ class ProjectsController < ApplicationController
         :category_id,
         :image
       )
+    end
+
+    def require_permission
+      return permission_redirect unless current_user == @project.owner or current_user.is_admin?
     end
 end

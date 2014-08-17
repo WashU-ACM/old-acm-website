@@ -99,7 +99,7 @@
 
 -->
 
-<% if current_user && current_user.id == @project.owner_id %>
+<% if current_user  == @project.owner %>
   <div class="form-actions">
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
               edit_project_path(@project), :class => 'btn' %>

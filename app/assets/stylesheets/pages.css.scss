@@ -1,35 +1,3 @@
 // Place all the styles related to the pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
-.home_button{
-	padding: 6px 12px;
-	font-size: 14px;
-	font-weight: normal;
-	text-align: center;
-	white-space: nowrap;
-	vertical-align: middle;
-	cursor: pointer;
-	background-image: none;
-	border: 1px solid;
-	border-radius: 4px;
-	
-	-moz-user-select: none;
-}
-
-.acm-project-listings{
-	.acm-project-image{
-		width: 150px;
-		height: 150px;
-	}
-}
-
-.acm-project-image-header{
-		width: 90px;
-		height: 90px;
-		margin-right: 10px;
-}
-
-.acm-project-description{
-	font-size: 1.2em;
-}

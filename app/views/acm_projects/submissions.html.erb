@@ -1,0 +1,15 @@
+<h1> Submissions Dashboard </h1>
+<p class="lead">
+	Welcome to the Submissions Dashboard. Here admins can approve pending submissions and delete existing entries for the ACM showcase.
+</p>
+
+
+<% if @pending != nil %>
+<h3>Awaiting Approval</h3>
+<%= render partial: "table", locals: { acm_projects: @pending } %>
+<% end %>
+
+<% if @approved != nil %>
+<h3>Previously Approved</h3>
+<%= render partial: "table", locals: { acm_projects: @approved } %>
+<% end %>

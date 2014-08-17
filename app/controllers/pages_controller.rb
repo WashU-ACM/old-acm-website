@@ -2,8 +2,8 @@ class PagesController < ApplicationController
   # use this controller to add extra pages which don't
   # require data from the database	
   
-  before_filter :require_login, only: [:admin, :submissions]
-  before_filter :require_admin, only: [:admin, :submissions]
+  before_filter :require_login, only: [:admin]
+  before_filter :require_admin, only: [:admin]
   
   def home
   end
@@ -15,12 +15,6 @@ class PagesController < ApplicationController
   end
 
   def admin
-  end
-
-  def submissions
-  	@acm_projects = AcmProject.all
-  	@approved = AcmProject.all.where("status = 'approved'")
-  	@pending = AcmProject.all.where("status = 'pending'")
   end
   
   def not_found

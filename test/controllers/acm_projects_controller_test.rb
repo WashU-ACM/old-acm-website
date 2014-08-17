@@ -44,6 +44,6 @@ class AcmProjectsControllerTest < ActionController::TestCase
       delete :destroy, id: @acm_project
     end
 
-    assert_redirected_to acm_projects_path
+    assert_redirected_to showcase_path
   end
 end

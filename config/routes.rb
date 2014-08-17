@@ -11,13 +11,16 @@ AcmApp::Application.routes.draw do
   resources :icpc_entries
   resources :projects do
     member do
-      get 'interest' # /projects/:id/interest
+      get "interest" # /projects/:id/interest
     end
   end
   
-  resources :acm_projects do
+  resources :acm_projects, path: "showcase" do
     member do
-      get 'approve' # /acm_projects/:id/approve
+      get "approve" # /showcase/:id/approve
+    end
+    collection do
+      get "submissions" # /showcase/submissions
     end
   end
 
@@ -36,7 +39,6 @@ AcmApp::Application.routes.draw do
   get "/calendar", to: "pages#calendar"
   get "/subscribe", to: "pages#subscribe"
   get "/admin", to: "pages#admin"
-  get "/submissions", to: "pages#submissions" 
 
   # Officers
   get "/officers", to: "officers#officers_2014"
@@ -45,7 +47,7 @@ AcmApp::Application.routes.draw do
   get "/officers_2013", to: "officers#officers_2013"
   
   #tagging
-  get 'tags/:tag', to: 'projects#index', as: :tag
+  get "tags/:tag", to: "projects#index", as: :tag
 
   # External links
   get "/portfolio" => redirect("https://portfolio.wustl.edu/organization/acm"), as: :portfolio

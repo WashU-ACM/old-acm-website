@@ -22,10 +22,4 @@ class ApplicationController < ActionController::Base
     redirect_to(root_url, notice: t("require_permission")) and return
   end
   
-  def full_name(id)
-    u = User.find(id)
-    return u.first_name + " " +  u.last_name
-  end
-  helper_method :full_name
-  
 end	
