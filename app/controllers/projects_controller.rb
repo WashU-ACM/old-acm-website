@@ -9,11 +9,10 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index  
-      if params[:tag]
-	activeProjects = Project.where(state: "active").order(updated_at: :desc)
-	@projects = activeProjects.tagged_with(params[:tag])
+    if params[:tag]
+    	@projects = Project.where_active.order(updated_at: :desc).tagged_with(params[:tag])
     else
-      @projects = Project.where(state: "active").order(updated_at: :desc)
+      @projects = Project.where_active.order(updated_at: :desc)
     end   
   end
   
@@ -102,6 +101,13 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit!
+      params.require(:project).permit(
+        :name,
+        :description,
+        :state,
+        :tag_list,
+        :category_id,
+        :image
+      )
     end
 end

@@ -1,7 +1,4 @@
 class User < ActiveRecord::Base
-
-  
-
 	#relationships
 	has_many :icpc_entries
 	has_many :projects, foreign_key: "owner_id"
@@ -9,9 +6,9 @@ class User < ActiveRecord::Base
 	has_many :competencies
 	has_many :technologies, through: :competencies
 	
-	
+  before_create :set_defaults
 
-	 accepts_nested_attributes_for :competencies
+	accepts_nested_attributes_for :competencies
 
   def self.from_omniauth(auth)
     uid_field = uid_field_from_provider auth[:provider]
@@ -61,6 +58,19 @@ class User < ActiveRecord::Base
 
   def full_name
     return "#{self.first_name} #{self.last_name}"
+  end
+
+  def is_admin?
+    return self.role == "admin"
+  end
+
+  def is_admin= value
+    self.role = value ? "admin" : ""
+  end
+
+  private
+  def set_defaults
+    self.personal_bio = "I am a member of WashU ACM."
   end
 
 end

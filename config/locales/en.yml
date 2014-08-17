@@ -22,3 +22,5 @@
 en:
   hello: "Hello world"
   require_login: "Please sign in with your WUSTL Key to view the page you requested."
+  require_admin: "You need to be an administrator user to view the page you requested."
+  require_permission: "You do not have permission to view the page you requested."

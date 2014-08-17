@@ -1,8 +1,6 @@
 // Styles for the application layout
 @import "compass/css3/transform";
-
-$acm_blue_dark: rgb(41, 171, 226);
-$acm_blue_light: rgb(0, 113, 188);
+@import "vars";
 
 #header-logo {
 	float: left;

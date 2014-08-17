@@ -1,28 +1,34 @@
 <%- model_class = User -%>
-<div class="page-header">
-  <h1><%= @user.full_name %></h1>
-    </h3>
-</div>
 
-<dl class="dl-horizontal">
-  
-  <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
-  <dd><%= @user.email %></dd>
- 
-  <dt><strong><%= model_class.human_attribute_name(:personal_bio) %>:</strong></dt>
-  <dd><%= @user.personal_bio %></dd>
-   <dt><strong> Technologies: </strong></dt>
-      <dd><% @user.technologies.each do |t| %>
-      <li><%= t.name %></li>
-    <% end %></dd>
-</dl>
+<h1>
+  <%= @user.full_name %>
+  <small><%= user_email_link(@user) %></small>
+</h1>
 
+<p class="lead">
+  <%= @user.personal_bio %>
+</p>
+
+<% if @user == current_user %>
+<p>
+  Tip: To edit your personal bio (shown above), click <%= link_to "Settings", edit_user_path(@user) %>.
+</p>
+<% end %>
+
+<% if @user.is_admin? %>
+<p>
+  This user is an administrator of the ACM web site.
+</p>
+<% end %>
+
+<% if @user == current_user or current_user.is_admin? %>
 <div class="form-actions">
-  <%= link_to t('.back', :default => t("helpers.links.Home")),
-              :root, :class => 'btn'  %>
-  <% if @user.id == current_user.id %>
-  <%= link_to t('.edit profile', :default => t("helpers.links.edit")),
-              edit_user_path(@user), :class => 'btn' %>
+
+  <% if current_user.is_admin? %>
+  <%= link_to "Toggle Admin", toggle_admin_user_path(@user), :class => "btn", :method => "put" %>
   <% end %>
+
+  <%= link_to "Settings", edit_user_path(@user), :class => "btn" %>
   <%= link_to "Sign Out", signout_path, class: "btn" %>
 </div>
+<% end %>

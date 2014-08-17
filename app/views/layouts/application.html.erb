@@ -30,7 +30,7 @@
 					<li><%= link_to "Projects", projects_path %></li>
 					<li><%= link_to "Officers", officers_path %></li>
 					<li><%= link_to "Showcase", acm_projects_path %></li>
-					<% if current_user != nil and current_user.role == "admin" %>
+					<% if current_user != nil and current_user.is_admin? %>
 						<li><%= link_to "Admin Tools", admin_path %></li>
 					<% end %>
 				</ul>
