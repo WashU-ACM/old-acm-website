@@ -6,29 +6,45 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-brandon = User.create({ first_name: "Brandon", last_name: "Meeks", email: "brandon.meeks@wustl.edu" })
-shane = User.create({ first_name: "Shane", last_name: "Carr", email: "shane.carr@wustl.edu" })
+if Rails.env.development?
+	if User.count == 0
+		brandon = User.create({ first_name: "Brandon", last_name: "Meeks", email: "brandon.meeks@wustl.edu" })
+		shane = User.create({ first_name: "Shane", last_name: "Carr", email: "shane.carr@wustl.edu" })
 
-technologies = Technology.create([
-	{ name: "ruby" },
-	{ name: "python" },
-	{ name: "java" }
-])
+		technologies = Technology.create([
+			{ name: "ruby" },
+			{ name: "python" },
+			{ name: "java" }
+		])
 
-brandon.icpc_entries.create({ uva_id: 1106, name: "Machine Works", description: "Moby Dick", code: "// Look ye, pudding-heads should never grant premises." })
-shane.icpc_entries.create({ uva_id: 202, name: "Repeating Decimals", description: "Hello World", code: "// sample" })
-shane.icpc_entries.create({ uva_id: 184, name: "Laser Lines", description: "Lorem Ipsum", code: "// dolor sit amet" })
+		brandon.icpc_entries.create({ uva_id: 1106, name: "Machine Works", description: "Moby Dick", code: "// Look ye, pudding-heads should never grant premises." })
+		shane.icpc_entries.create({ uva_id: 202, name: "Repeating Decimals", description: "Hello World", code: "// sample" })
+		shane.icpc_entries.create({ uva_id: 184, name: "Laser Lines", description: "Lorem Ipsum", code: "// dolor sit amet" })
 
-brandon.technologies << technologies[0]
-brandon.technologies << technologies[2]
-shane.technologies << technologies[1]
-shane.technologies << technologies[2]
+		brandon.technologies << technologies[0]
+		brandon.technologies << technologies[2]
+		shane.technologies << technologies[1]
+		shane.technologies << technologies[2]
 
-acmsite = brandon.projects.create({ name: "ACM Website", description: "Project matching and ICPC records" })
-acmsite.technologies << technologies[0]
-acmsite.technologies << technologies[1]
-acmsite.enthusiasts << shane
+		acmsite = brandon.projects.create({ name: "ACM Website", description: "Project matching and ICPC records" })
+		acmsite.technologies << technologies[0]
+		acmsite.technologies << technologies[1]
+		acmsite.enthusiasts << shane
 
-shopeel = shane.projects.create({ name: "Shopeel", description: "Friends don't let friends shop alone" })
-shopeel.technologies << technologies[0]
-shopeel.technologies << technologies[2]
+		shopeel = shane.projects.create({ name: "Shopeel", description: "Friends don't let friends shop alone" })
+		shopeel.technologies << technologies[0]
+		shopeel.technologies << technologies[2]
+	end
+end
+
+if Category.count == 0
+	cse = Category.create({ name: "Computer Science / Technology", class_name: "proj-cse" })
+	Category.create({ name: "Electrical Engineering", class_name: "proj-ee" })
+	Category.create({ name: "Mechanical Engineering", class_name: "proj-meche" })
+	Category.create({ name: "Other", class_name: "proj-other" })
+
+	Project.all.each do |proj|
+		proj.category = cse
+		proj.save!
+	end
+end
