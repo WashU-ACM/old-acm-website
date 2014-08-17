@@ -22,7 +22,7 @@
   <div class="control-group">
     <%= f.label :personal_bio, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_area :personal_bio, :class => 'text_area' %>
+      <%= f.text_area :personal_bio, :class => 'text_area', :rows => 4 %>
     </div>
   </div>
  
@@ -41,7 +41,6 @@
 
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
-    <%= link_to t('Profile', :default => t("helpers.links.Profile")),
-                current_user, :class => 'btn' %>
+    <%= link_to "Destroy User", user_path, :class => "btn btn-danger", confirm: "Are you sure?  All of your posts and projects will also be deleted.", method: "delete" %>
   </div>
 <% end %>

@@ -3,7 +3,11 @@ AcmApp::Application.routes.draw do
  
 
   # Resources
-  resources :users
+  resources :users do
+    member do
+      put "toggle_admin"
+    end
+  end
   resources :icpc_entries
   resources :projects do
     member do

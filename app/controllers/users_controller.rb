@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :require_login, except: [:new, :create]
-
-  
+  before_action :require_login
+  before_action :set_user, except: [:index]
+  before_action :require_admin, only: [:index, :toggle_admin]
+  before_action :require_permission, only: [:edit, :update, :destroy]
   
   
   # GET /users
@@ -16,39 +16,10 @@ class UsersController < ApplicationController
   def show
   end
 
-  # GET /users/new
-  def new
-    @user = User.new
-  end
-
   # GET /users/1/edit
   def edit 
-    
-    #make sure nobody attempts to change another user's profil
-    if @user.id != current_user.id
-	redirect_to "/invalid_request"
-    else
-      @user = current_user
-    end
-      
+    @user = current_user
   end
-
-  # POST /users
-  # POST /users.json	
-  def create
-    @user = User.new(user_params)
-
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @user }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-  
 
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
@@ -64,12 +35,20 @@ class UsersController < ApplicationController
     end
   end
 
+  # PUT /users/1/toggle_admin
+  def toggle_admin
+    @user.is_admin = !@user.is_admin?
+    @user.save!
+    redirect_to @user
+  end
+
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
+    session[:user_id] = nil
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url }
+      format.html { redirect_to root_url }
       format.json { head :no_content }
     end
   end
@@ -83,6 +62,17 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit!
+      params.require(:user).permit(
+        :first_name,
+        :last_name,
+        :email,
+        :personal_bio,
+        { :technology_ids => [] }
+      )
+    end
+
+    # Don't let users mess with each other's settings.
+    def require_permission
+      return permission_redirect unless @user == current_user or current_user.is_admin?
     end
 end
