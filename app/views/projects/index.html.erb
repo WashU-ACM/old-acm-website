@@ -17,7 +17,7 @@
 
 <% @projects.each do |project| %>
 <div class="media acm-project-listings">
-  <%= image_tag project.image_url.to_s, class: "img-polaroid acm-project-image pull-left" %>
+  <%= image_tag project_image_url(project), class: "img-polaroid acm-project-image pull-left" %>
   <div class="media-body">
     <h4 class="media-heading">
       <%= current_user ? link_to(project.name, project) : project.name %>
@@ -53,18 +53,12 @@
     <!--setting color of active/inactive text -->
     <strong>Project Category: </strong>
     <% if project.category != nil %>
-      <%= project.category.name %>
+      <span class="<%= project.category.class_name %>">
+        <%= project.category.name %>
+      </span>
     <% else %>	<!-- shouldn't even happen however just in case... -->
       None	
     <% end %>
-    
-    <br/>
-    
-    <% if project.state == 'active' %>
-      <strong>State: </strong><span class = 'active'><%= project.state %></span>
-    <% else %>
-      <strong>State: </strong><span class = 'inactive'><%= project.state %></span>
-    <%end%>
   </div>
 </div>
 <% end %>

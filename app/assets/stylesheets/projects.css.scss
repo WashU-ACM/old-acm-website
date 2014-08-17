@@ -1,0 +1,9 @@
+// Styles for the projects page
+@import "vars";
+
+.proj-cse {
+	color: $acm_blue_light;
+}
+.proj-ee, .proj-meche, .proj-other {
+	color: $acm_orange_dark;
+}

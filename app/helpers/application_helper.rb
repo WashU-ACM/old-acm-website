@@ -15,7 +15,7 @@ module ApplicationHelper
 	
 
 	def user_email_link(user)
-		link_to user.full_name, "mailto:#{u user.email}"
+		link_to user.email, "mailto:#{u user.email}"
 	end
 	
 

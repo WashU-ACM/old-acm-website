@@ -7,9 +7,8 @@ class User < ActiveRecord::Base
 	has_many :technologies, through: :competencies
 	
   before_create :set_defaults
-	
 
-	 accepts_nested_attributes_for :competencies
+	accepts_nested_attributes_for :competencies
 
   def self.from_omniauth(auth)
     uid_field = uid_field_from_provider auth[:provider]
