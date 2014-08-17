@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140817084714) do
+ActiveRecord::Schema.define(version: 20140817092028) do
 
   create_table "acm_projects", force: true do |t|
     t.string   "name"
@@ -31,13 +31,6 @@ ActiveRecord::Schema.define(version: 20140817084714) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "class_name"
-  end
-
-  create_table "competencies", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "technology_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "icpc_entries", force: true do |t|
@@ -69,11 +62,6 @@ ActiveRecord::Schema.define(version: 20140817084714) do
 
   add_index "projects", ["slug"], name: "index_projects_on_slug", unique: true
 
-  create_table "projects_technologies", id: false, force: true do |t|
-    t.integer "project_id"
-    t.integer "technology_id"
-  end
-
   create_table "projects_users", id: false, force: true do |t|
     t.integer "project_id"
     t.integer "user_id"
@@ -98,17 +86,6 @@ ActiveRecord::Schema.define(version: 20140817084714) do
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true
-
-  create_table "technologies", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "technologies_users", id: false, force: true do |t|
-    t.integer "technology_id"
-    t.integer "user_id"
-  end
 
   create_table "users", force: true do |t|
     t.string   "shib_uid"

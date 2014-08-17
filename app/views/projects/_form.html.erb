@@ -30,17 +30,6 @@
       <%= f.select :state, [ 'active','inactive' ], :prompt => 'Select One', :class => 'select' %>
     </div>
   </div>
-
-  <!--<div class="control-group">
-    <%= f.label "Desired Technologies", :class => 'control-label' %>
-    <div class = controls >
-      <%= hidden_field_tag "project[technology_ids][]", nil %>
-      <% Technology.all.each do |technology| %>
-	<%= check_box_tag "project[technology_ids][]", technology.id, @project.technology_ids.include?(technology.id) %>
-	<%= technology.name %><br/>
-	<% end %>
-    </div>
-   </div>-->
    
    <!-- tagging functionality -->
    

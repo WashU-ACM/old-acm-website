@@ -26,20 +26,6 @@
       <em>Posted by <%= project.owner.full_name %> on <%= project.created_at.to_s(:month_day_year_words) %></em>
     </p>
     
-    
-    <!--<strong>Desired Technologies:</strong>
-    <% project.technologies.each do |t| %>
-      <%= t.name %>, 
-    <% end %>
-    <% techArray = Array.new 
-    project.technologies.each do |t|
-      str = t.name
-      techArray.push str
-    end %>
-    <%=	techArray.to_sentence(words_connector: ', ') %>
-    <br/>-->
-    
-    
     <!-- taggin -->
     <strong>Tags: </strong>
     <% if project.tag_list.any? %>

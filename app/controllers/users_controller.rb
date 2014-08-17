@@ -66,8 +66,7 @@ class UsersController < ApplicationController
         :first_name,
         :last_name,
         :email,
-        :personal_bio,
-        { :technology_ids => [] }
+        :personal_bio
       )
     end
 

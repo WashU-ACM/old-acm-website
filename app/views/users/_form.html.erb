@@ -26,19 +26,6 @@
     </div>
   </div>
  
-  <div class="control-group">
-    <%= f.label :Technologies, :class => 'control-label' %>
-    <%= hidden_field_tag "user[technology_ids][]", nil %>
-    <% Technology.all.each do |technology| %>
-    <div class="controls">
-      <label>
-        <%= check_box_tag "user[technology_ids][]", technology.id, @user.technology_ids.include?(technology.id) %>
-        <%= technology.name %>
-      </label>
-     </div>
-     <% end %>
-  </div>
-
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
     <%= link_to "Destroy User", user_path, :class => "btn btn-danger", confirm: "Are you sure?  All of your posts and projects will also be deleted.", method: "delete" %>
