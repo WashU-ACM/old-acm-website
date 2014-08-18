@@ -2,7 +2,7 @@
 <div class="page-header">
   <h1><%=t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize %></h1>
 	<p class="lead">
-		Use this form to create a listing on ACM Project Matching.  We will include an announcement about your project in our next weekly newsletter.  Projects will automatically expire after 30 days, but you can log into the site to keep your project listed for longer.
+		Use this form to create a listing on ACM Project Matching.  We will include an announcement about your project in our next weekly newsletter.
 	</p>
 	<p>
 		<strong>Note:</strong> This form is for people from anywhere in WashU who want to recruit engineering students to help with their project.  If you are an engineering student looking to join a project, go to the <%= link_to "ACM Project Matching", projects_path %> index.  If you are a CSE student looking to show off your extracurricular project (but not to recruit other people to work on it), go to the <%= link_to "ACM Showcase", acm_projects_path %>.
