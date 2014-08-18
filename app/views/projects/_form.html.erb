@@ -28,15 +28,17 @@
     <%= f.label :state, :class => 'control-label' %>
     <div class="controls">
       <%= f.select :state, [ 'active','inactive' ], :prompt => 'Select One', :class => 'select' %>
+      <em class="muted">Choosing "inactive" hides your project from the listing</em>
     </div>
   </div>
    
    <!-- tagging functionality -->
    
     <div class="control-group">
-      <%= f.label :tag_list, "Tags (separated by commas)", :class => 'control-label' %><br />
+      <%= f.label :tag_list, "Tags", :class => 'control-label' %>
       <div class = 'controls' >
-	<%= f.text_field :tag_list, :class => 'text_field', :placeholder => 'games, java' %>
+        <%= f.text_field :tag_list, :class => 'text_field', :placeholder => 'games, java' %>
+        <em class="muted">Separate tags with commas</em>
       </div>
     </div>
 
@@ -52,6 +54,7 @@
     <%= f.label :image, :class => 'control-label' %>
     <div class="controls">
       <%= f.file_field :image %>
+      <em class="muted">Recommended dimensions are 150x150</em>
     </div>
   </div>
  

@@ -1,12 +1,16 @@
 <h1>ACM Showcase</h1>
 <p class="lead">
-  Welcome to the ACM showcase. Here is where members of the ACM community can submit and showoff their work right here on the official ACM website. Simply sign in, submit a description of your work, and wait for it to be processed.
+  Welcome to the ACM Showcase.  This is where members of the ACM community can show off their work for current and future ACM members.
 </p>
 
 <% if current_user %>
 <div class="text-center">
-  <%= link_to "Submit Entry", new_acm_project_path, :class => "btn btn-primary" %><br/><br/>
+  <%= link_to "Submit Entry", new_acm_project_path, :class => "btn btn-primary" %>
 </div>
+<% else %>
+<p class="lead">
+  Simply sign in, submit a description of your work, and wait for it to be processed.
+</p>
 <% end %>
 
 

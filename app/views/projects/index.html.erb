@@ -7,13 +7,13 @@
     <%= link_to tag.name, tag_path(tag.name), class: css_class %>
   <% end %>
 </div>
-<p class="lead">ACM Project Matching helps match WashU students with WashU-affiliated extracurricular projects in engineering.</p>
+<p class="lead">ACM Project Matching helps match WashU students with WashU-affiliated extracurricular projects in engineering.  Anyone from WashU can post their projects here for engineering students to read about and join!</p>
 <% if current_user %>
 <%= link_to "Post a Project",
             new_project_path,
             :class => 'btn btn-primary' %>
 <% else %>
-<p class="lead">Sign in with your WUSTL Key to view details on projects and post projects of your own!</p>
+<p class="lead">Sign in with your WUSTL Key to view details on projects and post projects of your own.</p>
 <% end %>
 
 <% @projects.each do |project| %>
