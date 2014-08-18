@@ -9,11 +9,7 @@ AcmApp::Application.routes.draw do
     end
   end
   resources :icpc_entries
-  resources :projects do
-    member do
-      get "interest" # /projects/:id/interest
-    end
-  end
+  resources :projects
   
   resources :acm_projects, path: "showcase" do
     member do

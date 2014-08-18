@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:interest, :show, :edit, :update, :destroy]
+  before_action :set_project, only: [:show, :edit, :update, :destroy]
   before_action :require_login, except: [:index]
   before_action :require_permission, only: [:edit, :update, :destroy]
   
@@ -15,22 +15,6 @@ class ProjectsController < ApplicationController
     else
       @projects = Project.where_active.order(updated_at: :desc)
     end   
-  end
-  
-  def interest
-   if !current_user
-     redirect_to "/"
-   elsif !@project.enthusiast_ids.include?(current_user.id)
-      @project.enthusiast_ids = current_user.id;
-      flash[:notice] = "Expessed interest"
-      redirect_to @project
-
-    #if user is attempting to "destroy" interest
-   else @project.enthusiast_ids.include?(current_user.id)
-      @project.enthusiasts.delete(current_user)
-      flash[:notice] = "Deleted interest"
-      redirect_to @project
-    end
   end
 
   # GET /projects/1

@@ -6,7 +6,6 @@ class Project < ActiveRecord::Base
   belongs_to :owner, class_name: "User"
   validates_presence_of :owner
   
-  has_and_belongs_to_many :enthusiasts, class_name: "User"
   after_initialize :init
   mount_uploader :image, ImageUploader
 

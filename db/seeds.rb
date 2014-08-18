@@ -16,7 +16,6 @@ if Rails.env.development?
 		shane.icpc_entries.create({ uva_id: 184, name: "Laser Lines", description: "Lorem Ipsum", code: "// dolor sit amet" })
 
 		acmsite = brandon.projects.create({ name: "ACM Website", description: "Project matching and ICPC records" })
-		acmsite.enthusiasts << shane
 
 		shopeel = shane.projects.create({ name: "Shopeel", description: "Friends don't let friends shop alone" })
 	end
@@ -32,4 +31,11 @@ if Category.count == 0
 		proj.category = cse
 		proj.save!
 	end
+end
+
+if !User.first.nil? && User.first.slug.nil?
+	# Generate slugs
+	User.all.each{ |v| v.save! }
+	Project.all.each{ |v| v.save! }
+	AcmProject.all.each{ |v| v.save! }
 end

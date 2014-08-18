@@ -21,59 +21,6 @@
   <strong>Project Category:</strong> <%= @project.category.name %>
 </p>
 
-<!--
-  
-
-<table>
-  <tr>
-    <td>
-      <strong>State: </strong>
-      <%= @project.state %><br/>
-      <strong>Owner: </strong>
-      <%= User.find(@project.owner_id).first_name %> <br/>
-      <strong>Interested Users: </strong>
-      <% @project.enthusiasts.each do |u| %>
-	<li><%= link_to  u.first_name+" "+u.last_name, u %></li>
-      <% end %>
-    </td>
-    
-    <td>
-    <strong> Description: </strong><br/>
-      <%= markdown(@project.description) %><br/>
-      <strong>Desired Technologies:</strong>
-       <% @project.technologies.each do |t| %>
-      <li><%= t.name %></li>
-    <% end %>
-    </td>
-  </tr>
-</table>
-
-<div class="form-actions">
-  <%= link_to t('.back', :default => t("helpers.links.back")),
-              projects_path, :class => 'btn'  %>
- 
-<% if current_user %>
-  <% if !@project.enthusiast_ids.include?(current_user.id)%>
-    <%= link_to 'Express interest', interest_project_path(@project), :class => 'btn' %>
-  <% else %>
-  <%= link_to 'Delete interest', interest_project_path(@project), :class => 'btn' %>
-  <% end %>
-<% end %>
-
- <% if current_user && current_user.id == @project.owner_id %>
-  <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_project_path(@project), :class => 'btn' %>
-  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              project_path(@project),
-              :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-danger' %>
-  <% end %>
-
-</div>
-
--->
-
 <% if current_user  == @project.owner %>
   <div class="form-actions">
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
