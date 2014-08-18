@@ -1,5 +1,5 @@
 <%- model_class = Project -%>
-<h1>Project Listings</h1>
+<h1>ACM Project Matching</h1>
 <div id="tag_cloud" class = "pull-right">
   <strong> Tags: </strong>
   <br/>
@@ -7,6 +7,7 @@
     <%= link_to tag.name, tag_path(tag.name), class: css_class %>
   <% end %>
 </div>
+<p class="lead">ACM Project Matching helps match WashU students with WashU-affiliated extracurricular projects in engineering.</p>
 <% if current_user %>
 <%= link_to "Post a Project",
             new_project_path,

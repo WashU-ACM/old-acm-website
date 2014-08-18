@@ -18,7 +18,12 @@
     <br/>
     <%= image_tag showcase_image_url(acm_project), class: "img-polaroid acm-project-image-header" %>
     <h3><%= acm_project.name %></h3>
-    <p class="acm-project-submitted-by">Submitted by <%= acm_project.owner.full_name %></p>
+    <p class="acm-project-submitted-by">
+      Submitted by <%= acm_project.owner.full_name %>
+    </p>
+    <p class="acm-project-created-at">
+      <%= acm_project.created_at.to_formatted_s(:month_day_year_words) %>
+    </p>
   </div>
   <div class="project-description">
    <%= truncate(strip_tags(acm_project.description), length: 200) %>

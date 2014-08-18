@@ -6,7 +6,7 @@ class AcmProjectsController < ApplicationController
 	# GET /showcase
 	# GET /showcase.json
 	def index
-		@acm_projects = AcmProject.where_approved.order(updated_at: :desc)
+		@acm_projects = AcmProject.where_approved.order(created_at: :desc)
 	end
 
 	# GET /showcase/1
