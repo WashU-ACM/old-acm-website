@@ -1,5 +1,5 @@
 class AcmProjectsController < ApplicationController
-	before_action :set_acm_project, only: [:show, :edit, :update, :destroy]
+	before_action :set_acm_project, only: [:show, :edit, :update, :destroy, :approve]
 	before_action :require_login, except: [:index, :show]
 	before_action :require_admin, except: [:index, :show, :new, :create]
 
@@ -66,7 +66,6 @@ class AcmProjectsController < ApplicationController
   end
 
 	def approve
-		@acm_project = AcmProject.find_by_id(params[:id])
 		@acm_project.update_attribute(:status, "approved")
 		redirect_to submissions_acm_projects_path
 	end
