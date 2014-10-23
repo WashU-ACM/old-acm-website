@@ -11,9 +11,9 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index  
     if params[:tag]
-    	@projects = Project.where_active.order(updated_at: :desc).tagged_with(params[:tag])
+    	@projects = Project.where_active.order(created_at: :desc).tagged_with(params[:tag])
     else
-      @projects = Project.where_active.order(updated_at: :desc)
+      @projects = Project.where_active.order(created_at: :desc)
     end   
   end
 
