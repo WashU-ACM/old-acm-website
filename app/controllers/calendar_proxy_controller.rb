@@ -61,10 +61,12 @@ class CalendarProxyController < ActionController::Base
 		return response
 	end
 	def valid_event_objects
-		valid_events = all_events.data.items.reject do |event|
+		valid_events = all_events.data.items.map do |event|
+			event.description = "Refer to our latest email for details!" if event.description.nil? or event.description.length == 0
+			event
+		end.reject do |event|
 			event.summary.nil? ||
 				event.start.nil? ||
-				event.description.nil? ||
 				event.description.include?("#nolist")
 		end
 		valid_objects = valid_events.map do |event|
@@ -76,7 +78,7 @@ class CalendarProxyController < ActionController::Base
 
 			{
 				name: event.summary,
-				description: event.description,
+				description: event.description || "",
 				location: event.location,
 				start_time: start_time,
 				end_time: end_time,

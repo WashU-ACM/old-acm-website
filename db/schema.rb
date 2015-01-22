@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20140817093719) do
     t.string   "slug"
   end
 
-  add_index "acm_projects", ["slug"], name: "index_acm_projects_on_slug", unique: true
+  add_index "acm_projects", ["slug"], name: "index_acm_projects_on_slug", unique: true, using: :btree
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20140817093719) do
 
   create_table "projects", force: true do |t|
     t.string   "name"
-    t.text     "description", limit: 255
+    t.text     "description"
     t.string   "state"
     t.integer  "owner_id"
     t.datetime "created_at"
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20140817093719) do
     t.string   "slug"
   end
 
-  add_index "projects", ["slug"], name: "index_projects_on_slug", unique: true
+  add_index "projects", ["slug"], name: "index_projects_on_slug", unique: true, using: :btree
 
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"
@@ -67,15 +67,15 @@ ActiveRecord::Schema.define(version: 20140817093719) do
     t.datetime "created_at"
   end
 
-  add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
-  add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context"
+  add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true, using: :btree
+  add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context", using: :btree
 
   create_table "tags", force: true do |t|
     t.string  "name"
     t.integer "taggings_count", default: 0
   end
 
-  add_index "tags", ["name"], name: "index_tags_on_name", unique: true
+  add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "shib_uid"
@@ -95,6 +95,6 @@ ActiveRecord::Schema.define(version: 20140817093719) do
     t.string   "slug"
   end
 
-  add_index "users", ["slug"], name: "index_users_on_slug", unique: true
+  add_index "users", ["slug"], name: "index_users_on_slug", unique: true, using: :btree
 
 end
