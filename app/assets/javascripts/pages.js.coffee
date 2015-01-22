@@ -22,7 +22,10 @@ window.sidebarEvents = (elementId) ->
 
 Handlebars.registerHelper "eventTime", () ->
 	m = moment(this.start_time).tz("America/Chicago")
-	return m.calendar()
+	c = m.calendar() # returns a string
+	if (i=c.indexOf(" at 12:00 AM"))!=-1
+		c = c.substr(0,i)
+	return c
 
 Handlebars.registerHelper "eventDuration", () ->
 	m1 = moment(this.start_time)
