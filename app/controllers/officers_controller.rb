@@ -3,4 +3,6 @@ class OfficersController < ApplicationController
 	end
 	def officers_2014
 	end
+	def officers_2015
+	end
 end
