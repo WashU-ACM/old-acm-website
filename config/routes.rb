@@ -37,8 +37,9 @@ AcmApp::Application.routes.draw do
   get "/admin", to: "pages#admin"
 
   # Officers
-  get "/officers", to: "officers#officers_2015"
+  get "/officers", to: "officers#officers_2017"
   get "/officers_index", to: "officers#officers_index"
+  get "/officers_2015", to: "officers#officers_2015"
   get "/officers_2014", to: "officers#officers_2014"
   get "/officers_2013", to: "officers#officers_2013"
   
