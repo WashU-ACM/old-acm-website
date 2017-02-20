@@ -1,3 +1,3 @@
-# WashU ACM Website
+# WashU ACM Website (deprecated)
 
-This is the repository for WashU ACM's [homepage](https://acm.wustl.edu/).
+This is the repository for WashU ACM's old homepage from 2013 to 2016.
